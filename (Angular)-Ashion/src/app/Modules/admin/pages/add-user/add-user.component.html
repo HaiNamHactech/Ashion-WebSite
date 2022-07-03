@@ -1,0 +1,82 @@
+<div class="main-panel">
+  <div class="content-wrapper">
+    <div class="page-header">
+      <h3 class="page-title"> Form elements </h3>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">Forms</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Form elements</li>
+        </ol>
+      </nav>
+    </div>
+    <div class="row">
+      <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Basic form elements</h4>
+            <p class="card-description"> Basic form elements </p>
+            <form class="forms-sample" [formGroup]="formAddUser" (ngSubmit)="submitForm(formAddUser)">
+              <div class="row ">
+                <div class="form-group col-lg-6">
+                  <label for="exampleInputName1">
+                    First Name
+                    <span class="messError" *ngIf="formAddUser.get('firstName')?.touched && formAddUser.get('firstName')?.errors?.['required']"> ( không được bỏ trống )</span>
+                    <span class="messError" *ngIf="formAddUser.get('firstName')?.touched && formAddUser.get('firstName')?.errors?.['pattern']"> (6 -> 32 ký tự ,không chứ ký tự đặc biệt )</span>
+                  </label>
+                  <input type="text" formControlName="firstName" class="form-control" id="exampleInputName1" placeholder="First Name">
+                </div>
+                <div class="form-group col-lg-6">
+                  <label for="exampleInputName1">
+                    Last Name
+                    <span class="messError" *ngIf="formAddUser.get('lastName')?.touched && formAddUser.get('lastName')?.errors?.['required']"> ( không được bỏ trống )</span>
+                    <span class="messError" *ngIf="formAddUser.get('lastName')?.touched && formAddUser.get('lastName')?.errors?.['pattern']"> (6 -> 32 ký tự ,không chứ ký tự đặc biệt )</span>
+                  </label>
+                  <input type="text" formControlName="lastName" class="form-control" id="exampleInputName1" placeholder="Last Name">
+                </div>
+                <div class="form-group col-lg-6">
+                  <label for="exampleInputName1">
+                    Email
+                    <span class="messError" *ngIf="formAddUser.get('email')?.touched && formAddUser.get('email')?.errors?.['required']"> ( không được bỏ trống )</span>
+                    <span class="messError" *ngIf="formAddUser.get('email')?.touched && formAddUser.get('email')?.errors?.['pattern']"> ( không đúng định dạng )</span>
+                  </label>
+                  <input type="email" formControlName="email" class="form-control" id="exampleInputName1" placeholder="email">
+                </div>
+                <div class="form-group col-lg-6">
+                  <label for="exampleInputName1">
+                    Pass word
+                    <span class="messError" *ngIf="formAddUser.get('passWord')?.touched && formAddUser.get('passWord')?.errors?.['required']"> ( không được bỏ trống )</span>
+                    <span class="messError" *ngIf="formAddUser.get('passWord')?.touched && formAddUser.get('passWord')?.errors?.['pattern']"> ( không đúng định dạng )</span>
+                  </label>
+                  <input type="text" formControlName="passWord" class="form-control" id="exampleInputName1" placeholder="Pass Word">
+                </div>
+                <div class="form-group col-lg-12">
+                  <label>
+                    File Avatar
+                    <span class="messError" *ngIf="formAddUser.get('avatar')?.touched && formAddUser.get('avatar')?.errors?.['required']"> ( không được bỏ trống )</span>
+                  </label>
+                  <div class="input-group col-xs-12">
+                    <input type="file" formControlName="avatar" class="form-control file-upload-info" placeholder="Avatar">
+                    <span class="input-group-append">
+                      <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary mr-2"[disabled]="formAddUser.invalid">Save</button>
+              <button class="btn btn-dark">Cancel</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- content-wrapper ends -->
+  <!-- partial:../../partials/_footer.html -->
+  <footer class="footer">
+    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+      <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © bootstrapdash.com 2020</span>
+      <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> Free <a href="https://www.bootstrapdash.com/bootstrap-admin-template/" target="_blank">Bootstrap admin templates</a> from Bootstrapdash.com</span>
+    </div>
+  </footer>
+  <!-- partial -->
+</div>

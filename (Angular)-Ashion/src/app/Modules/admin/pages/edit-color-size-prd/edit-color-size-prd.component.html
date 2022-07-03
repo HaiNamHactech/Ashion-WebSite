@@ -1,0 +1,164 @@
+<div class="main-panel">
+  <div class="content-wrapper">
+    <div class="page-header">
+      <h3 class="page-title">Form elements</h3>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">Forms</a></li>
+          <li class="breadcrumb-item active" aria-current="page">
+            Form elements
+          </li>
+        </ol>
+      </nav>
+    </div>
+    <div class="row">
+      <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-lg-3">
+                <div *ngIf="checkAction === 1">
+                  <h4 class="card-title">Edit Size Color Product</h4>
+                </div>
+                <div *ngIf="checkAction === 2">
+                  <h4 class="card-title">Detail Size Color Product</h4>
+                </div>
+              </div>
+              <div class="col-lg-9 px-0">
+                <div class="input-search d-flex">
+                  <input
+                    _ngcontent-sba-c23=""
+                    type="text"
+                    placeholder="Search products"
+                    class="form-control"
+                  />
+                  <button
+                    _ngcontent-qpf-c32=""
+                    type="submit"
+                    class="btn btn-primary mr-2"
+                  >
+                    Search
+                  </button>
+                </div>
+              </div>
+            </div>
+            <form
+              class="forms-sample"
+              [formGroup]="formEditPrdSizeColor"
+              (ngSubmit)="submitForm(formEditPrdSizeColor)"
+            >
+              <div class="row">
+                <div class="col-lg-6 form-group">
+                  <label for="exampleSelectGender">Product Name</label>
+                    <select
+                      class="form-control"
+                      formControlName="productId"
+                      id="exampleSelectGender"
+                    >
+                      <option
+                        [attr.disabled]="true"
+                        [attr.hidden]="true"
+                        value=""
+                      >
+                        choose product
+                      </option>
+                      <option
+                        *ngFor="let prd of listPrd"
+                        [value]="prd.productId"
+                        [attr.disabled]="true"
+
+                      >
+                        {{ prd.productName }}
+                      </option>
+                    </select>
+                </div>
+                <div class="col-lg-6 form-group">
+                  <label for="exampleInputName1">Quantity </label>
+                  <input
+                    type="number"
+                    formControlName="quantity"
+                    class="form-control"
+                    id="exampleInputName1"
+                    placeholder="quantity"
+                  />
+                </div>
+                <div class="col-lg-6 form-group">
+                  <label for="exampleSelectGender">Color</label>
+                  <select
+                    class="form-control"
+                    formControlName="colorId"
+                    id="exampleSelectGender"
+                  >
+                    <option
+                      [attr.disabled]="true"
+                      [attr.hidden]="true"
+                      value=""
+                    >
+                      choose color
+                    </option>
+                    <option
+                      *ngFor="let color of listColor"
+                      [value]="color.colorId"
+                    >
+                      {{ color.colorName }}
+                    </option>
+                  </select>
+                </div>
+                <div class="col-lg-6 form-group">
+                  <label for="exampleSelectGender">Size</label>
+                  <select
+                    class="form-control"
+                    formControlName="sizeId"
+                    id="exampleSelectGender"
+                  >
+                    <option
+                      [attr.disabled]="true"
+                      [attr.hidden]="true"
+                      value=""
+                    >
+                      choose size
+                    </option>
+                    <option *ngFor="let size of listSize" [value]="size.sizeId">
+                      {{ size.sizeName }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <!-- </div> -->
+              <ng-container *ngIf="checkAction !== 2">
+                <button
+                  type="submit"
+                  class="btn btn-primary mr-2"
+                  [disabled]="formEditPrdSizeColor.invalid"
+                >
+                  Save
+                </button>
+                <button class="btn btn-dark">Cancel</button>
+              </ng-container>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- content-wrapper ends -->
+  <!-- partial:../../partials/_footer.html -->
+  <footer class="footer">
+    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+      <span
+        class="text-muted d-block text-center text-sm-left d-sm-inline-block"
+        >Copyright © bootstrapdash.com 2020</span
+      >
+      <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">
+        Free
+        <a
+          href="https://www.bootstrapdash.com/bootstrap-admin-template/"
+          target="_blank"
+          >Bootstrap admin templates</a
+        >
+        from Bootstrapdash.com</span
+      >
+    </div>
+  </footer>
+  <!-- partial -->
+</div>

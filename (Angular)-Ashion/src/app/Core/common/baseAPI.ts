@@ -1,0 +1,19 @@
+export const CATEGORY_PRODUCT_API = 'http://localhost:8079/api/categoryPrd';
+export const CATEGORY_BLOB_API = 'http://localhost:8079/api/categoryBlog';
+export const BLOG_API = 'http://localhost:8079/api/blog';
+export const UPLOAD_IMAGE =
+  'https://api.cloudinary.com/v1_1/dqdar3g4l/image/upload';
+export const COLOR_API = 'http://localhost:8079/api/color';
+export const SIZE_API = 'http://localhost:8079/api/size';
+export const PRD_API = 'http://localhost:8079/api/product';
+export const CSP_API = 'http://localhost:8079/api/colorSizeProduct';
+export const COMMENT_BLOG_API = 'http://localhost:8079/api/comment';
+export const SLIDER_API = 'http://localhost:8079/api/slider';
+export const INSTAGRAM_API = 'http://localhost:8079/api/instagram';
+export const CONTACT_API = 'http://localhost:8079/api/contact';
+export const ROLE_API = 'http://localhost:8079/api/role';
+export const USER_API = 'http://localhost:8079/api/user';
+export const PRD_IMAGE = 'http://localhost:8079/api/productImage';
+export const AUTH_API = 'http://localhost:8079/api/user/token';
+export const ORDER_API = 'http://localhost:8079/api/order';
+export const ORDER_DETAIL_API = 'http://localhost:8079/api/orderDetail';

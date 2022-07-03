@@ -1,0 +1,179 @@
+<!-- Breadcrumb Begin -->
+<div class="breadcrumb-option">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="breadcrumb__links">
+          <a routerLink="/home">
+            <i class="fas fa-home"></i>
+            Home
+          </a>
+          <span
+            class="px-2"
+            *ngFor="let cate of listBreadcrumbLink; let i = index"
+          >
+            <i class="fal fa-angle-right"></i>
+            <ng-container
+              *ngIf="i !== listBreadcrumbLink.length - 1; else disiableBread"
+            >
+              <a routerLink="/product-list/{{ cate.slug }}">
+                <span class="active_breadcrumbLink">
+                  {{ cate.breadcrumbLink }}
+                </span>
+              </a>
+            </ng-container>
+            <ng-template #disiableBread>
+              <span>{{ cate.breadcrumbLink }}</span>
+            </ng-template>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Breadcrumb End -->
+<!-- Shop Section Begin -->
+<section class="shop spad">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3 col-md-3">
+        <div class="shop__sidebar">
+          <div class="sidebar__categories">
+            <div class="section-title">
+              <h4>Categories</h4>
+            </div>
+            <div class="categories__accordion">
+              <div class="accordion" id="accordionExample">
+                <div class="card" *ngFor="let cate of treeCategory">
+                  <div class="card-heading">
+                    <a
+                      class="d-flex justify-content-between align-items-center"
+                      data-toggle="collapse"
+                      [attr.data-target]="'#collapseOne' + cate.cateId"
+                    >
+                      <p>{{ cate.categoryName }}</p>
+                      <i class="fal fa-angle-down"></i>
+                    </a>
+                  </div>
+                  <div
+                    [attr.id]="'collapseOne' + cate.cateId"
+                    class="collapse"
+                    data-parent="#accordionExample"
+                  >
+                    <div class="card-body">
+                      <ul>
+                        <a
+                          *ngFor="let cateChilds of cate.childs"
+                          routerLink="/product-list/{{ cate.slug }}/{{
+                            cateChilds.slug
+                          }}"
+                        >
+                          <li>
+                            {{ cateChilds.categoryName }}
+                          </li>
+                        </a>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="sidebar__filter">
+            <div class="section-title">
+              <h4>Shop by price</h4>
+            </div>
+            <div class="filter-range-wrap">
+              <div class="range-slider">
+                <div class="price-input">
+                  <ng5-slider
+                    [(value)]="minValue"
+                    [(highValue)]="maxValue"
+                    [options]="options"
+                  ></ng5-slider>
+                  <div
+                    class="slider-filler d-flex justify-content-between align-items-centert-3"
+                  >
+                    <p class="display-price-fillter mb-0">
+                      <span>Price : </span> ${{ minValue }} - ${{ maxValue }}
+                    </p>
+                    <button class="btn-flter-price" (click)="filerPrdByPrice()">
+                      FILLER
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="sidebar__sizes">
+            <div class="section-title">
+              <h4>Shop by size</h4>
+            </div>
+            <div class="size__list">
+              <label *ngFor="let size of listSize">
+                {{ size.sizeName }}
+                <input
+                  (click)="sendSize(size.sizeName)"
+                  type="checkbox"
+                  [value]="size.sizeName"
+                />
+                <span class="checkmark"></span>
+              </label>
+            </div>
+          </div>
+          <div class="sidebar__color">
+            <div class="section-title">
+              <h4>Shop by color</h4>
+            </div>
+            <div class="size__list color__list">
+              <label *ngFor="let color of listColor">
+                {{ color.colorName }}
+                <input
+                  (click)="sendColor(color.colorName)"
+                  type="checkbox"
+                  [value]="color.colorName"
+                />
+                <span class="checkmark"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-9 col-md-9">
+        <div class="row">
+          <div class="col-lg-4 col-md-6" *ngFor="let prd of listProduct">
+            <app-product-item [product]="prd"
+            [slugCategory]="slugCategory"> </app-product-item>
+          </div>
+          <div class="col-lg-12 text-center">
+            <app-pagination
+              [firstPage]="firstPage"
+              [lastPage]="lastPage"
+              [page]="page"
+              [pageSize]="pageSize"
+              [totalPage]="totalPage"
+              (selectPage)="hanldeSelectPage($event)"
+            >
+            </app-pagination>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Shop Section End -->
+<!-- Instagram Begin -->
+<div class="instagram">
+  <div class="container-fluid">
+    <div class="row">
+      <div
+        *ngFor="let insta of listInstagram"
+        class="col-lg-2 col-md-4 col-sm-4 p-0"
+      >
+        <app-insta-item [urlImg]="insta.urlImg"></app-insta-item>
+      </div>
+    </div>
+  </div>
+</div>
+<app-scroll-top></app-scroll-top>
+<!-- Instagram End -->

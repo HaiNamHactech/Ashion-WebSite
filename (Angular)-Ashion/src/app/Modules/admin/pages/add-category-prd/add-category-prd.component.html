@@ -1,0 +1,275 @@
+<div class="main-panel">
+  <div class="content-wrapper">
+    <div class="page-header">
+      <h3 class="page-title">Form elements</h3>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">Forms</a></li>
+          <li class="breadcrumb-item active" aria-current="page">
+            Form elements
+          </li>
+        </ol>
+      </nav>
+    </div>
+    <div class="row">
+      <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <div *ngIf="checkAction === 0">
+              <h4 class="card-title">Add Category Product</h4>
+            </div>
+            <div *ngIf="checkAction === 1">
+              <h4 class="card-title">Edit Category Product</h4>
+            </div>
+            <div *ngIf="checkAction === 2">
+              <h4 class="card-title">Detail Category Product</h4>
+            </div>
+            <form
+              class="forms-sample"
+              [formGroup]="formAddCategory"
+              (ngSubmit)="submitForm(formAddCategory)"
+            >
+              <div class="row">
+                <div class="col-lg-8">
+                  <div class="row">
+                    <div class="form-group col-lg-6">
+                      <label for="exampleInputName1">
+                        Category Name
+                        <span
+                          class="messError"
+                          *ngIf="formAddCategory.get('categoryName')?.touched && formAddCategory.get('categoryName')?.errors?.['required']"
+                        >
+                          ( không được bỏ trống )</span
+                        >
+                        <span
+                          class="messError"
+                          *ngIf="formAddCategory.get('categoryName')?.touched && formAddCategory.get('categoryName')?.errors?.['minlength']"
+                        >
+                          ( ít nhất 8 ký tự )</span
+                        >
+                        <span
+                          class="messError"
+                          *ngIf="formAddCategory.get('categoryName')?.errors?.['FiledDuplicated']"
+                        >
+                          ( tên danh mục đã tồn tại)
+                        </span>
+                      </label>
+                      <input
+                        type="text"
+                        formControlName="categoryName"
+                        class="form-control"
+                        id="exampleInputName1"
+                        placeholder="Category Name"
+                      />
+                    </div>
+                    <div class="form-group col-lg-6">
+                      <label for="exampleSelectGender">
+                        ParentId
+                        <span
+                          class="messError"
+                          *ngIf="formAddCategory.get('parentId')?.touched && formAddCategory.get('parentId')?.errors?.['required']"
+                        >
+                          ( không được bỏ trống )</span
+                        >
+                      </label>
+                      <select
+                        formControlName="parentId"
+                        class="form-control"
+                        id="exampleSelectGender"
+                      >
+                        <option
+                          [attr.disabled]="true"
+                          [attr.hidden]="true"
+                          value=""
+                        >
+                          choose parentId
+                        </option>
+                        <option value="0" [attr.selected]="true">root</option>
+                        <option
+                          *ngFor="let cate of listCategory"
+                          [value]="cate.categoryId"
+                        >
+                          {{ cate.categoryName }}
+                        </option>
+                      </select>
+                    </div>
+                    <div class="form-group col-lg-6">
+                      <label for="exampleInputName1">
+                        Slug
+                        <span
+                          class="messError"
+                          *ngIf="formAddCategory.get('slug')?.touched && formAddCategory.get('slug')?.errors?.['required']"
+                        >
+                          ( không được bỏ trống )</span
+                        >
+                        <span
+                          class="messError"
+                          *ngIf="formAddCategory.get('slug')?.touched && formAddCategory.get('slug')?.errors?.['pattern']"
+                        >
+                          ( không chứ số, ký tự đặc biệt, 6-23 ký tự )</span
+                        >
+                        <span
+                          class="messError"
+                          *ngIf="formAddCategory.get('slug')?.errors?.['FiledDuplicated']"
+                        >
+                          ( slug đã tồn tại)
+                        </span>
+                      </label>
+                      <input
+                        type="text"
+                        formControlName="slug"
+                        class="form-control"
+                        id="exampleInputName1"
+                        placeholder="Slug "
+                      />
+                    </div>
+                    <div class="form-group col-lg-6">
+                      <label for="exampleInputName1">
+                        Display No
+                        <span
+                          class="messError"
+                          *ngIf="formAddCategory.get('displayNo')?.touched && formAddCategory.get('displayNo')?.errors?.['required']"
+                        >
+                          ( không được bỏ trống )
+                        </span>
+                        <span
+                          class="messError"
+                          *ngIf="formAddCategory.get('displayNo')?.errors?.['FiledDuplicated']"
+                        >
+                          ( displayNo đã tồn tại)
+                        </span>
+                      </label>
+                      <input
+                        type="number"
+                        formControlName="displayNo"
+                        class="form-control"
+                        id="exampleInputName1"
+                        placeholder="Display No"
+                      />
+                    </div>
+                    <div class="form-group col-lg-6">
+                      <label for="exampleInputName1">
+                        BreadcrumbLink
+                        <span
+                          class="messError"
+                          *ngIf="formAddCategory.get('breadcrumbLink')?.touched && formAddCategory.get('breadcrumbLink')?.errors?.['required']"
+                        >
+                          ( không được bỏ trống )</span
+                        >
+                      </label>
+                      <input
+                        type="text"
+                        formControlName="breadcrumbLink"
+                        class="form-control"
+                        id="exampleInputName1"
+                        placeholder="BreadcrumbLink"
+                      />
+                    </div>
+                    <div class="form-group col-lg-6">
+                      <label for="exampleSelectGender">
+                        Show Home
+                        <span
+                          class="messError"
+                          *ngIf="formAddCategory.get('showHome')?.touched && formAddCategory.get('showHome')?.errors?.['required']"
+                        >
+                          ( không được bỏ trống )</span
+                        >
+                      </label>
+                      <select
+                        formControlName="showHome"
+                        class="form-control"
+                        id="exampleSelectGender"
+                      >
+                        <option
+                          [attr.disabled]="true"
+                          [attr.hidden]="true"
+                          value=""
+                        >
+                          choose show home
+                        </option>
+                        <option value="false">Hiden</option>
+                        <option value="true">Show</option>
+                      </select>
+                    </div>
+                    <div class="form-group col-lg-12">
+                      <label for="exampleInputName1"> Description </label>
+                      <input
+                        type="text"
+                        formControlName="description"
+                        class="form-control"
+                        id="exampleInputName1"
+                        placeholder="Description"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div
+                    class="upload-image"
+                    [ngClass]="checkAction === 2 ? 'detail' : ''"
+                  >
+                    <div class="form-group col-lg-12">
+                      <label>
+                        Url Img
+                        <span
+                          class="messError"
+                          *ngIf="formAddCategory.get('urlImg')?.touched && formAddCategory.get('urlImg')?.errors?.['required']"
+                        >
+                          ( không được bỏ trống )</span
+                        >
+                      </label>
+                      <div class="input-group col-xs-12">
+                        <img class="show-image" [src]="imageFile" alt="" />
+                        <input
+                          type="file"
+                          (change)="onchangeImage($event)"
+                          class="ps-4 form-control file-upload-info"
+                          placeholder="Upload Image"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <ng-container *ngIf="checkAction !== 2">
+                <button
+                  type="submit"
+                  class="btn btn-primary mr-2"
+                  [disabled]="formAddCategory.invalid"
+                >
+                  Save
+                </button>
+                <button class="btn btn-dark">Cancel</button>
+              </ng-container>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- content-wrapper ends -->
+  <!-- partial:../../partials/_footer.html -->
+  <footer class="footer">
+    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+      <span
+        class="text-muted d-block text-center text-sm-left d-sm-inline-block"
+        >Copyright © bootstrapdash.com 2020</span
+      >
+      <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">
+        Free
+        <a
+          href="https://www.bootstrapdash.com/bootstrap-admin-template/"
+          target="_blank"
+          >Bootstrap admin templates</a
+        >
+        from Bootstrapdash.com</span
+      >
+    </div>
+  </footer>
+  <!-- partial -->
+</div>
+<div class="loadding" [ngClass]="checkLoadding ? 'showok' : ''">
+  <div class="spinner-border text-success" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>

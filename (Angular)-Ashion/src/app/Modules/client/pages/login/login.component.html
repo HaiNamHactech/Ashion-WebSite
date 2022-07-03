@@ -1,0 +1,132 @@
+<!-- Breadcrumb Begin -->
+<div class="breadcrumb-option">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="breadcrumb__links">
+          <a href="index.html">
+            <i class="fas fa-home"></i>
+            Home
+          </a>
+          <i class="fal fa-angle-right"></i>
+          <span>Login</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Breadcrumb End -->
+
+<section class="register mb-5">
+  <div class="container">
+    <div class="row d-flex justify-content-center">
+      <div class="col-lg-4">
+        <div class="form-register">
+          <form
+            [formGroup]="formLogin"
+            (ngSubmit)="submitForm(formLogin)"
+            id="create_customer"
+          >
+            <input
+              type="hidden"
+              name="form_type"
+              value="create_customer"
+            /><input type="hidden" name="utf8" value="✓" />
+            <input type="hidden" name="return_to" value="/account" />
+            <div class="login-form-container">
+              <div class="messerr" *ngIf="messErrors !== undefined">
+                <span>{{ messErrors }}</span>
+              </div>
+              <div class="title-text">
+                <h2>Login</h2>
+                <p>Please register below account detail</p>
+              </div>
+              <ul class="fill-form">
+                <li class="log-email">
+                  <label for="userName" class="form-label">
+                    UserName
+                    <span
+                      class="messError"
+                      *ngIf="formLogin.get('userName')?.touched && formLogin.get('userName')?.errors?.['required']"
+                    >
+                      ( không được bỏ trống )</span
+                    >
+                    <span
+                      class="messError"
+                      *ngIf="formLogin.get('userName')?.touched && formLogin.get('userName')?.errors?.['pattern']"
+                    >
+                      ( 6-32 ký tự,không ký tự số,đặc biệt. )</span
+                    >
+                  </label>
+                  <input
+                    formControlName="userName"
+                    type="text"
+                    class="form-control input-full"
+                    placeholder="userName"
+                  />
+                </li>
+                <li class="log-pwd">
+                  <label for="password" class="form-label"
+                    >PassWord
+                    <span
+                      class="messError"
+                      *ngIf="formLogin.get('password')?.touched && formLogin.get('password')?.errors?.['required']"
+                    >
+                      ( không được bỏ trống )</span
+                    >
+                    <span
+                      class="messError"
+                      *ngIf="formLogin.get('password')?.touched && formLogin.get('password')?.errors?.['pattern']"
+                    >
+                      ( 6-32 ký tự ,có ký tự số, ký tự đặc biệt )</span
+                    >
+                  </label>
+                  <input
+                    formControlName="password"
+                    type="password"
+                    class="form-control input-full"
+                    placeholder="Password"
+                  />
+                </li>
+                <li class="form-toggle-btn">
+                  <button
+                    class="btn btn-create form-action-button"
+                    type="submit"
+                  >
+                    Login
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-lg-4 d-flex">
+        <div class="acc-page">
+          <div class="side-form-wrap">
+            <div class="acc-title d-flex align-item-center">
+              <h6>Don't have an account?</h6>
+            </div>
+            <button class="account-optional-action">
+              <a routerLink="/register" id="customer_login_link"
+                >Create Account</a
+              >
+            </button>
+            <div class="term-privacy">
+              <p class="term-con mt-3">
+                <span><sup>*</sup></span>
+                <a target="_blank">Terms &amp; Conditions.</a>
+              </p>
+              <p class="pri-pol">
+                <span
+                  >Your privacy and security are important to us. For more
+                  information on how we use your data read our</span
+                >
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

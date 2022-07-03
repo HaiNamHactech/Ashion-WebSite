@@ -1,0 +1,38 @@
+<div class="offset-paging">
+  <ul class="d-flex list-item justify-content-center" (click)="gotoTop()">
+    <li>
+      <button
+        [disabled]="firstPage"
+        [ngClass]="{ active: firstPage }"
+        class="btn-offset"
+        (click)="moveToPage(page - 1)"
+      >
+        <i class="fas fa-chevron-left"></i>
+      </button>
+    </li>
+    <li *ngFor="let pages of listPage">
+      <ng-container *ngIf="getType(pages) === 'number'; else threeDots">
+        <button
+          class="btn-offset"
+          [ngClass]="{ active: pages === page }"
+          (click)="moveToPage(pages)"
+        >
+          {{ pages }}
+        </button>
+      </ng-container>
+      <ng-template #threeDots>
+        <button>{{ pages }}</button>
+      </ng-template>
+    </li>
+    <li>
+      <button
+        [disabled]="lastPage"
+        [ngClass]="{ active: lastPage }"
+        class="btn-offset"
+        (click)="moveToPage(page + 1)"
+      >
+        <i class="fas fa-chevron-right"></i>
+      </button>
+    </li>
+  </ul>
+</div>

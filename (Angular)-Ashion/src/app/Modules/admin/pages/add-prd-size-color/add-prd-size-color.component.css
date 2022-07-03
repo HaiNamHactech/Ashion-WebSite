@@ -1,0 +1,37 @@
+@import url('../../../../../assets/cssAdmin/style.css');
+label {
+  color: #ffffff;
+  font-weight: 500;
+}
+option {
+  color: #ffffff;
+}
+.main-panel{
+  height: 100%;
+}
+.title {
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 15px;
+  position: relative;
+  letter-spacing: 6px;
+}
+.title::after{
+  left: 0px;
+    content: "";
+    width: 80px;
+    height: 2px;
+    background-color: #0090e7;
+    position: absolute;
+    bottom: 0px;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}

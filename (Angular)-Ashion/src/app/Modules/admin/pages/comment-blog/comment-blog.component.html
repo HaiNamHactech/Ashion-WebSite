@@ -1,0 +1,19 @@
+<app-table
+  [ListItem]="listCommentBlogPangination"
+  [ListKey]="listKey"
+  [filedColumn]="null"
+  [showAction]="showAction"
+  [id]="keyId"
+  [titleTable]="titleTable"
+  [checkLoadding]="checkLoadding"
+  (handleDeleteItem)="handleDeleteItem($event)"
+  (handleEditItem)="handleEditItem($event)"
+  (handleDetailItem)="handleDetailItem($event)"
+  [firstPage]="firstPage"
+  [lastPage]="lastPage"
+  [page]="offset"
+  [totalPage]="totalPage"
+  [pageSize]="pageSize"
+  (curentPage)="handleSelectPage($event)"
+>
+</app-table>

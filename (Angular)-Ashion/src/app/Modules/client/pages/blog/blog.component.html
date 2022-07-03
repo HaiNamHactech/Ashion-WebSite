@@ -1,0 +1,72 @@
+<!-- Breadcrumb Begin -->
+<div class="breadcrumb-option">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="breadcrumb__links">
+          <a href="index.html">
+            <i class="fas fa-home"></i>
+            Home
+          </a>
+          <i class="fal fa-angle-right"></i>
+          <span>Blog</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Breadcrumb End -->
+<!-- Blog Section Begin -->
+<section class="blog spad">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 col-md-4 col-sm-6">
+        <ng-container *ngFor="let blog of listBlogs.slice(0, 3); index as i">
+          <app-blog-item *ngIf="i == 0" customStyle="'true'" [blog]="blog">
+          </app-blog-item>
+          <app-blog-item *ngIf="i != 0" [blog]="blog"> </app-blog-item>
+        </ng-container>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-6">
+        <ng-container *ngFor="let blog of listBlogs.slice(3, 7)">
+          <app-blog-item [blog]="blog"> </app-blog-item>
+        </ng-container>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-6">
+        <ng-container *ngFor="let blog of listBlogs.slice(7, 10); index as i">
+          <app-blog-item *ngIf="i == 2" customStyle="'true'" [blog]="blog">
+          </app-blog-item>
+          <app-blog-item *ngIf="i != 2" [blog]="blog"> </app-blog-item>
+        </ng-container>
+      </div>
+      <div class="col-lg-12 text-center">
+        <app-pagination
+          [firstPage]="firstPage"
+          [lastPage]="lastPage"
+          [page]="page"
+          [pageSize]="pageSize"
+          [totalPage]="totalPage"
+          (selectPage)="hanldeSelectPage($event)"
+        >
+        </app-pagination>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Blog Section End -->
+<!-- Instagram Begin -->
+<div class="instagram">
+  <div class="container-fluid">
+    <div class="row">
+      <div
+        *ngFor="let insta of listInstagram"
+        class="col-lg-2 col-md-4 col-sm-4 p-0"
+      >
+        <app-insta-item [urlImg]="insta.urlImg"></app-insta-item>
+      </div>
+    </div>
+  </div>
+</div>
+<app-scroll-top></app-scroll-top>
+
+<!-- Instagram End -->

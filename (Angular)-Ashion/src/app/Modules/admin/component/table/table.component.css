@@ -1,0 +1,123 @@
+@import url("../../../../../assets/cssAdmin/style.css");
+td {
+  font-size: 13px !important;
+  padding: 10px !important;
+  vertical-align: middle;
+  text-align: center;
+}
+td p {
+  font-size: 12px;
+}
+.main-panel {
+  height: 100%;
+}
+th {
+  padding: 10px !important;
+  text-align: center;
+}
+.dropdown-toggle::after {
+  display: none;
+}
+.fa-ellipsis-h-alt {
+  margin-right: 0px !important;
+}
+.dropdown-item:hover {
+  color: #00ac4a !important;
+}
+.dropdown-menu li:hover {
+  cursor: pointer;
+}
+.activeAdd {
+  color: #ffffff;
+}
+
+.spinner-border {
+  z-index: 1000 !important;
+  position: absolute;
+}
+.loadding {
+  display: none;
+}
+.loadding.showok {
+  display: flex;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.active {
+  color: #ffffff;
+}
+.code-color {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin: 0 auto;
+}
+.check {
+  color: #00ac4a;
+}
+.imgsliderprd {
+  margin: 0 5px;
+}
+.nav-table {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+.nav-table h4 {
+  margin-bottom: 0px !important;
+}
+.image-table {
+  width: 55px !important;
+  height: 55px !important;
+  border-radius: 0 !important;
+  border: 1px solid #00ac4a;
+  object-fit: cover;
+}
+.search-column {
+  width: 105px;
+  margin: 0 auto;
+}
+.form-input-search {
+  display: flex;
+}
+.btn-acs-dsc {
+  display: flex;
+  flex-direction: column;
+}
+.btn-acs-dsc .fa-sort-up {
+  margin-top: 2px;
+}
+.btn-acs-dsc .fa-sort-up:hover,
+.btn-acs-dsc .fa-sort-down:hover {
+  cursor: pointer;
+  color: azure;
+}
+.btn-acs-dsc .fa-sort-down {
+  margin-bottom: 2px;
+}
+.search-column {
+  font-size: 12px;
+}
+.showPrdOnPage {
+  display: flex;
+  align-items: center;
+}
+
+.showPrdOnPage label {
+  margin-bottom: 0px;
+  color: #ffffff;
+  margin-right: 25px;
+}
+.showPrdOnPage select {
+  width: 100px;
+  padding: 2px 10px;
+  height: 30px;
+  color: #ffffff;
+}

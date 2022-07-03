@@ -1,0 +1,39 @@
+<div class="product__item">
+  <div
+    class="product__item__pic set-bg"
+    style="background-image: url('{{ product?.thumbnail }}')"
+    (click)="addPrdToCart(product)"
+  >
+    <div class="label sale" *ngIf="product.discount > 0">Sale</div>
+    <ul class="product__hover">
+      <li>
+        <a href="img/product/product-1.jpg" class="image-popup">
+          <span class="fal fa-expand-alt"></span>
+        </a>
+      </li>
+      <li>
+        <a>
+          <span class="fal fa-heart"></span>
+        </a>
+      </li>
+      <li>
+        <a (click)="addPrdToCart(product)">
+          <span class="fal fa-shopping-bag"></span>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="product__item__text">
+    <h6>
+      <a (click)="navigateToDetail(product)">{{ product.productName }}</a>
+    </h6>
+    <div class="rating">
+      <ng-container *ngFor="let item of listVote">
+        <i class="fas fa-star"></i>
+      </ng-container>
+    </div>
+    <div class="product__price">
+      $ {{ (product.price * (100 - product.discount)) / 100 | number: "1.0-0" }}
+    </div>
+  </div>
+</div>

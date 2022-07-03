@@ -1,0 +1,301 @@
+<div class="main-panel">
+  <div class="content-wrapper">
+    <div class="row">
+      <div class="col-12 grid-margin">
+        <div class="card">
+          <div class="card-body">
+            <div class="nav-table">
+              <h4 class="card-title">Table {{ titleTable }}</h4>
+              <div class="showPrdOnPage">
+                <label for="">Show :</label>
+                <select
+                  (change)="hanldeSelectPage(1)"
+                  name="numberPerPage"
+                  [(ngModel)]="numberPerPage"
+                  class="form-control"
+                >
+                  <option value="{{ item }}" *ngFor="let item of listPrdOnPage">
+                    {{ item }}
+                  </option>
+                </select>
+              </div>
+              <button
+                (click)="onHandleNavigate()"
+                type="button"
+                class="btn btn-outline-secondary btn-fw"
+              >
+                Add {{ titleTable }}
+              </button>
+            </div>
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>STT</th>
+
+                    <ng-container
+                      *ngIf="filedColumn !== null; else commonColumn"
+                    >
+                      <th *ngFor="let key of ListKey">
+                        {{ filedColumn[key] }}
+                      </th>
+                    </ng-container>
+                    <ng-template #commonColumn>
+                      <th *ngFor="let key of ListKey">
+                        {{ key }}
+                      </th>
+                    </ng-template>
+                    <th *ngIf="showDetail">Show Detail</th>
+                    <th *ngIf="showAction">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of ListItem; index as index">
+                    <td [ngClass]="item[id] === idRowChange ? 'active' : ''">
+                      {{ index + 1 }}
+                    </td>
+                    <ng-container *ngFor="let key of ListKey" [ngSwitch]="key">
+                      <td *ngSwitchCase="'avatar'">
+                        <img
+                          class="image-table"
+                          [src]="item[key]"
+                          alt="image"
+                        />
+                      </td>
+                      <td *ngSwitchCase="'thumbnail'">
+                        <img
+                          class="image-table"
+                          [src]="item[key]"
+                          alt="image"
+                        />
+                      </td>
+                      <td *ngSwitchCase="'urlImgs'">
+                        <img
+                          *ngFor="let itemImg of item[key]"
+                          [src]="itemImg"
+                          alt="image"
+                          class="image-table imgsliderprd"
+                        />
+                      </td>
+                      <td *ngSwitchCase="'urlImg'">
+                        <img
+                          class="image-table"
+                          [src]="item[key]"
+                          alt="image"
+                        />
+                      </td>
+                      <td *ngSwitchCase="'newProduct'">
+                        <span
+                          [ngClass]="item[key] === true ? 'check' : 'uncheck'"
+                        >
+                          <i class="fal fa-check-circle"></i>
+                        </span>
+                      </td>
+                      <td *ngSwitchCase="'trendProduct'">
+                        <span
+                          [ngClass]="item[key] === true ? 'check' : 'uncheck'"
+                        >
+                          <i class="fal fa-check-circle"></i>
+                        </span>
+                      </td>
+                      <td *ngSwitchCase="'featureProduct'">
+                        <span
+                          [ngClass]="item[key] === true ? 'check' : 'uncheck'"
+                        >
+                          <i class="fal fa-check-circle"></i>
+                        </span>
+                      </td>
+                      <td *ngSwitchCase="'listColorSizeDto'"
+                        style="text-align: left"
+                      >
+                        <ng-container *ngFor="let item of item[key]">
+                          {{ item.colorName }} - {{ item.sizeName }} -
+                          {{ item.quantity }}
+                          <br />
+                        </ng-container>
+                      </td>
+                      <td *ngSwitchCase="'code'">
+                        <div
+                          class="code-color"
+                          [ngStyle]="{ 'background-color': item[key] }"
+                        ></div>
+                      </td>
+                      <td *ngSwitchCase="'status'">
+                        <div
+                          *ngIf="item[key] == 0"
+                          class="badge badge-outline-danger"
+                        >
+                          Disiable
+                        </div>
+                        <!-- <div
+                          *ngIf="item[key] == 1"
+                          class="badge badge-outline-success"
+                        >
+                          Active
+                        </div> -->
+                        <div
+                          *ngIf="item[key] == 3"
+                          class="badge badge-outline-success"
+                        >
+                          Approved
+                        </div>
+                        <div
+                          *ngIf="item[key] == 1"
+                          class="badge badge-outline-warning"
+                        >
+                          Pending
+                        </div>
+                        <!-- <div
+                          *ngIf="item[key] == 4"
+                          class="badge badge-outline-danger"
+                        >
+                          Rejected
+                        </div> -->
+                      </td>
+                      <td *ngSwitchCase="'createDate'">
+                        {{ item[key] | date: "medium" }}
+                      </td>
+                      <td *ngSwitchCase="'modifieDate'">
+                        {{ item[key] | date: "medium" }}
+                      </td>
+                      <td
+                        *ngSwitchDefault
+                        [ngClass]="item[id] === idRowChange ? 'active' : ''"
+                      >
+                        <p class="mb-0 text-truncate" style="max-width: 150px">
+                          {{ item[key] }}
+                        </p>
+                      </td>
+                    </ng-container>
+                    <td *ngIf="showDetail">
+                      <button type="button" class="btn btn-success btn-md">
+                        Detail
+                      </button>
+                    </td>
+                    <td *ngIf="showAction">
+                      <div class="dropdown">
+                        <button
+                          type="button"
+                          class="btn btn-secondary dropdown-toggle"
+                          data-bs-toggle="dropdown"
+                          aria-expanded="false"
+                        >
+                          <i class="fal fa-ellipsis-h-alt"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                          <li>
+                            <a
+                              (click)="onHandleDetailItem(item)"
+                              class="dropdown-item"
+                            >
+                              <i class="fal fa-info-circle"></i>
+                              Detail
+                            </a>
+                          </li>
+                          <li>
+                            <a
+                              (click)="onHandleEditItem(item)"
+                              class="dropdown-item"
+                            >
+                              <i class="fal fa-edit"></i>
+                              Edit
+                            </a>
+                          </li>
+                          <li
+                            data-bs-toggle="modal"
+                            attr.data-bs-target="#exampleModal_{{ item[id] }}"
+                          >
+                            <a class="dropdown-item">
+                              <i class="fal fa-backspace"></i>
+                              Delete
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                      <!-- Modal -->
+                      <div
+                        class="modal fade"
+                        id="exampleModal_{{ item[id] }}"
+                        tabindex="-1"
+                        attr.aria-labelledby="exampleModalLabel_{{ item[id] }}"
+                        aria-hidden="true"
+                      >
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5
+                                class="modal-title"
+                                id="exampleModalLabel_{{ item[id] }}"
+                              >
+                                Modal title
+                              </h5>
+                              <button
+                                type="button"
+                                class="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"
+                              ></button>
+                            </div>
+                            <div class="modal-body">
+                              Bạn chắc chắn muốn xóa ? id
+                              {{ item[id] }}
+                            </div>
+                            <div class="modal-footer">
+                              <button
+                                type="button"
+                                class="btn btn-primary"
+                                (click)="onHandleDeleteItem(item[id])"
+                                data-bs-dismiss="modal"
+                              >
+                                Yes
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <app-pagination
+              [firstPage]="firstPage"
+              [lastPage]="lastPage"
+              [page]="page"
+              [pageSize]="pageSize"
+              [totalPage]="totalPage"
+              (selectPage)="hanldeSelectPage($event)"
+            >
+            </app-pagination>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="footer">
+    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+      <span
+        class="text-muted d-block text-center text-sm-left d-sm-inline-block"
+        >Copyright © bootstrapdash.com 2020<br />
+
+        Distributed By
+        <a href="https://www.themewagon.com/" target="_blank">ThemeWagon</a>
+      </span>
+      <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">
+        Free
+        <a
+          href="https://www.bootstrapdash.com/bootstrap-admin-template/"
+          target="_blank"
+          >Bootstrap admin templates</a
+        >
+        from Bootstrapdash.com</span
+      >
+    </div>
+  </footer>
+  <!-- partial -->
+</div>
+<div class="loadding" [ngClass]="checkLoadding ? 'showok' : ''">
+  <div class="spinner-border text-success" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>

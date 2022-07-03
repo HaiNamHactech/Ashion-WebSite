@@ -1,0 +1,11 @@
+<ng-container>
+  <div class="categories__item set-bg" style="background-image: url({{img}}); height: {{customHight}}" >
+    <div class="categories__text">
+        <h4 [class]="customStyle ? 'custom' : ''" >{{title}}</h4>
+        <p *ngIf="customStyle">{{content}}</p>
+        <p *ngIf="!customStyle">{{totalItem}} items</p>
+        <a href="#">Shop now</a>
+    </div>
+</div>
+</ng-container>
+

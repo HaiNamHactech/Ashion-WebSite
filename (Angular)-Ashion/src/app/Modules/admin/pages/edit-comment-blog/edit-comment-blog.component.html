@@ -1,0 +1,194 @@
+<div class="main-panel">
+  <div class="content-wrapper">
+    <div class="page-header">
+      <h3 class="page-title">Form elements</h3>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">Forms</a></li>
+          <li class="breadcrumb-item active" aria-current="page">
+            Form elements
+          </li>
+        </ol>
+      </nav>
+    </div>
+    <div class="row">
+      <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <div *ngIf="checkAction === 1">
+              <h4 class="card-title">Edit Comment Blog</h4>
+            </div>
+            <div *ngIf="checkAction === 2">
+              <h4 class="card-title">Detail Comment Blog</h4>
+            </div>
+            <form
+              class="forms-sample"
+              [formGroup]="formCommentBlog"
+              (ngSubmit)="submitForm(formCommentBlog)"
+            >
+              <div class="row">
+                <div class="col-lg-8">
+                  <div class="row">
+                    <div class="form-group col-lg-6">
+                      <label for="exampleInputName1"> User Name </label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="exampleInputName1"
+                        formControlName="userId"
+                        placeholder="user name"
+                        readonly
+                      />
+                    </div>
+                    <div class="form-group col-lg-6">
+                      <label for="exampleInputName1"> Blog Name </label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="exampleInputName1"
+                        placeholder="blog name"
+                        formControlName="blogId"
+                        readonly
+                      />
+                    </div>
+                    <div class="form-group col-lg-6">
+                      <label for="exampleInputName1"> Create By </label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="exampleInputName1"
+                        placeholder="create by"
+                        formControlName="createBy"
+                        readonly
+                      />
+                    </div>
+                    <div class="form-group col-lg-6">
+                      <label for="exampleInputName1"> Modifie By </label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="exampleInputName1"
+                        placeholder="modifie by"
+                        formControlName="modifieBy"
+                        readonly
+                      />
+                    </div>
+                    <div class="form-group col-lg-6">
+                      <label for="exampleInputName1"> Create Date </label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="exampleInputName1"
+                        placeholder="create date"
+                        formControlName="createDate"
+                        readonly
+                      />
+                    </div>
+                    <div class="form-group col-lg-6">
+                      <label for="exampleInputName1"> Modifie Date </label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="exampleInputName1"
+                        placeholder="modifie date"
+                        formControlName="modifieDate"
+                        readonly
+                      />
+                    </div>
+                    <div class="form-group col-lg-6">
+                      <label for="exampleInputName1"> Favouries </label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="exampleInputName1"
+                        placeholder="favouries"
+                        formControlName="favourite"
+                        readonly
+                      />
+                    </div>
+                    <div class="form-group col-lg-6">
+                      <label for="exampleSelectGender" class="status-comment"
+                        >Status - (change)</label
+                      >
+                      <select
+                        class="form-control"
+                        id="exampleSelectGender"
+                        formControlName="status"
+                      >
+                        <option
+                          [attr.disabled]="true"
+                          [attr.hidden]="true"
+                          value=""
+                        >
+                          choose status
+                        </option>
+                        <option value="true">active</option>
+                        <option value="false">disable</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="upload-image">
+                    <div class="form-group col-lg-12">
+                      <label> Avatar </label>
+                      <input
+                        type="text"
+                        formControlName="avatar"
+                        class="input-avatar"
+                      />
+                      <div class="input-group col-xs-12">
+                        <div class="avatar-comment">
+                          <img [src]="urlAvatar" class="show-image" alt="" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <label for="exampleTextarea1"> Content Blog </label>
+                  <textarea
+                    class="form-control"
+                    placeholder="content blog"
+                    id="exampleTextarea1"
+                    rows="7"
+                    formControlName="content"
+                    readonly
+                  ></textarea>
+                </div>
+              </div>
+              <ng-container *ngIf="checkAction !== 2">
+                <button
+                  type="submit"
+                  class="btn btn-primary mr-2"
+                  [disabled]="formCommentBlog.invalid"
+                >
+                  Save
+                </button>
+                <button class="btn btn-dark">Cancel</button>
+              </ng-container>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- content-wrapper ends -->
+  <!-- partial:../../partials/_footer.html -->
+  <footer class="footer">
+    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+      <span
+        class="text-muted d-block text-center text-sm-left d-sm-inline-block"
+        >Copyright © bootstrapdash.com 2020</span
+      >
+      <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">
+        Free
+        <a
+          href="https://www.bootstrapdash.com/bootstrap-admin-template/"
+          target="_blank"
+          >Bootstrap admin templates</a
+        >
+        from Bootstrapdash.com</span
+      >
+    </div>
+  </footer>
+  <!-- partial -->
+</div>

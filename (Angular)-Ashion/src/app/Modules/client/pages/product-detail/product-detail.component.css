@@ -1,0 +1,51 @@
+@import url("../../../../../assets/css/style.css");
+
+.breadcrumb__links a {
+  font-size: 15px;
+  font-weight: 500;
+  color: #111111;
+  margin-right: 18px;
+  display: inline-block;
+  position: relative;
+  top: -1px;
+}
+.breadcrumb__links a:after {
+  position: absolute;
+  right: -14px;
+  top: 0;
+  content: "";
+  font-family: "FontAwesome";
+}
+.fal.fa-angle-right {
+  margin-right: 5px;
+  margin-left: -10px;
+}
+.fas.fa-home {
+  font-size: 13px;
+}
+.product__details__text .rating i {
+  font-size: 11px;
+  color: #e3c01c;
+  margin-right: 0px;
+}
+.pro-qty .qtybtn {
+  font-size: 14px;
+  color: #666666;
+  cursor: pointer;
+  float: left;
+  width: 12px;
+  line-height: 46px;
+}
+.radio-color {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: red;
+}
+
+.active_breadcrumbLink {
+  color: black !important;
+}
+.cart-btn:hover {
+  cursor: pointer;
+}

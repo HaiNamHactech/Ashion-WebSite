@@ -1,0 +1,13 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="px-0" [class]="checkCustomStyle ? 'col-lg-3 slow' : 'col-lg-3'">
+      <app-slider-bar-admin [checkCustomCss]="checkCustomStyle">
+      </app-slider-bar-admin>
+    </div>
+    <div class="px-0" [class]="checkCustomStyle ? 'col-lg-9 slow' : 'col-lg-9'">
+      <app-navbar-admin (toggleStyle)="handleCustomStyle($event)">
+      </app-navbar-admin>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

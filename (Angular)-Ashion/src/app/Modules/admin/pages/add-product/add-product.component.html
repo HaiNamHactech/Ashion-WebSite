@@ -1,0 +1,497 @@
+<div class="main-panel">
+  <div class="content-wrapper">
+    <div class="page-header">
+      <h3 class="page-title">Form elements</h3>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">Forms</a></li>
+          <li class="breadcrumb-item active" aria-current="page">
+            Form elements
+          </li>
+        </ol>
+      </nav>
+    </div>
+    <div class="row">
+      <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <div *ngIf="checkAction === 0">
+              <h4 class="card-title">Add Product</h4>
+            </div>
+            <div *ngIf="checkAction === 1">
+              <h4 class="card-title">Edit Product</h4>
+            </div>
+            <div *ngIf="checkAction === 2">
+              <h4 class="card-title">Detail Product</h4>
+            </div>
+            <form
+              class="forms-sample"
+              [formGroup]="formAddProduct"
+              (ngSubmit)="submitForm(formAddProduct)"
+            >
+              <div class="row">
+                <div class="col-lg-8">
+                  <div class="row">
+                    <div class="form-group col-lg-6">
+                      <label for="exampleInputName1">
+                        Product Name
+                        <span
+                          class="messError"
+                          *ngIf="formAddProduct.get('productName')?.touched && formAddProduct.get('productName')?.errors?.['required']"
+                        >
+                          ( không được bỏ trống )</span
+                        >
+                        <span
+                          class="messError"
+                          *ngIf="formAddProduct.get('productName')?.touched && formAddProduct.get('productName')?.errors?.['minlength']"
+                        >
+                          (ít nhất 8 ký tự )</span
+                        >
+                        <span
+                          class="messError"
+                          *ngIf="formAddProduct.get('productName')?.errors?.['UserNameFiledDuplicated']"
+                        >
+                          ( tên sản phẩm đã tồn tại)
+                        </span>
+                      </label>
+                      <input
+                        type="text"
+                        formControlName="productName"
+                        class="form-control"
+                        id="exampleInputName1"
+                        placeholder="Name"
+                      />
+                    </div>
+                    <div class="form-group col-lg-6">
+                      <label for="exampleSelectGender">
+                        Category Product
+                        <span
+                          class="messError"
+                          *ngIf="formAddProduct.get('categoryPrdId')?.touched && formAddProduct.get('categoryPrdId')?.errors?.['required']"
+                        >
+                          ( không được bỏ trống )</span
+                        >
+                      </label>
+                      <select
+                        formControlName="categoryPrdId"
+                        class="form-control"
+                        id="exampleSelectGender"
+                      >
+                        <option
+                          [attr.disabled]="true"
+                          [attr.hidden]="true"
+                          value=""
+                        >
+                          choose Category
+                        </option>
+                        <option
+                          [value]="cate.categoryId"
+                          *ngFor="let cate of listCategoryPrd"
+                        >
+                          {{ cate.categoryName }}
+                        </option>
+                      </select>
+                    </div>
+                    <!-- </div> -->
+                    <!-- <div class="row"> -->
+                    <div class="form-group col-lg-4">
+                      <label for="exampleInputCity1">
+                        Price
+                        <span
+                          class="messError"
+                          *ngIf="formAddProduct.get('price')?.touched && formAddProduct.get('price')?.errors?.['required']"
+                        >
+                          ( không được bỏ trống )</span
+                        >
+                        <span
+                          class="messError"
+                          *ngIf="formAddProduct.get('price')?.touched && formAddProduct.get('price')?.errors?.['min']"
+                          >(giá sản phẩm lớn hơn 0)</span
+                        >
+                      </label>
+                      <input
+                        type="number"
+                        min="0"
+                        formControlName="price"
+                        class="form-control"
+                        id="exampleInputCity1"
+                        placeholder="Price"
+                      />
+                    </div>
+                    <div class="form-group col-lg-4">
+                      <label for="exampleInputCity1">
+                        Discount %
+                        <span
+                          class="messError"
+                          *ngIf="formAddProduct.get('discount')?.touched && formAddProduct.get('discount')?.errors?.['required']"
+                        >
+                          ( không được bỏ trống )</span
+                        >
+                        <span
+                          class="messError"
+                          *ngIf="formAddProduct.get('discount')?.touched && formAddProduct.get('discount')?.errors?.['max']"
+                        >
+                          ( nhỏ hơn 80% )</span
+                        >
+                      </label>
+                      <input
+                        type="number"
+                        formControlName="discount"
+                        min="0"
+                        max="100"
+                        class="form-control"
+                        id="exampleInputCity1"
+                        placeholder="Discount"
+                      />
+                    </div>
+                    <div class="form-group col-lg-4">
+                      <label for="exampleSelectGender">
+                        Vote
+                        <span
+                          class="messError"
+                          *ngIf="formAddProduct.get('vote')?.touched && formAddProduct.get('vote')?.errors?.['required']"
+                        >
+                          ( không được bỏ trống )</span
+                        >
+                      </label>
+                      <select
+                        formControlName="vote"
+                        class="form-control"
+                        id="exampleSelectGender"
+                      >
+                        <option
+                          [attr.disabled]="true"
+                          [attr.hidden]="true"
+                          value=""
+                        >
+                          choose number star
+                        </option>
+                        <option value="1">1 sao</option>
+                        <option value="2">2 sao</option>
+                        <option value="3">3 sao</option>
+                        <option value="4">4 sao</option>
+                        <option value="5">5 sao</option>
+                      </select>
+                    </div>
+                    <div class="form-group col-lg-12">
+                      <label for="exampleInputCity1">
+                        Short description
+                        <span
+                          class="messError"
+                          *ngIf="formAddProduct.get('descriptionShort')?.touched && formAddProduct.get('descriptionShort')?.errors?.['required']"
+                        >
+                          ( không được bỏ trống )</span
+                        >
+                      </label>
+                      <input
+                        type="text"
+                        formControlName="descriptionShort"
+                        class="form-control"
+                        id="exampleInputCity1"
+                        placeholder="Short description"
+                      />
+                    </div>
+                    <!-- </div> -->
+                    <div class="form-group mt-2">
+                      <label for="exampleTextarea1">
+                        Detail description
+                        <span
+                          class="messError"
+                          *ngIf="formAddProduct.get('descriptionDetail')?.touched && formAddProduct.get('descriptionDetail')?.errors?.['required']"
+                        >
+                          ( không được bỏ trống )</span
+                        >
+                      </label>
+                      <textarea
+                        class="form-control"
+                        formControlName="descriptionDetail"
+                        placeholder="detail description"
+                        id="exampleTextarea1"
+                        rows="4"
+                      ></textarea>
+                    </div>
+                    <div [formGroup]="formColorSize">
+                      <div class="row">
+                        <div class="form-group col-lg-2">
+                          <label for="exampleTextarea1"> Color </label>
+                          <div
+                            *ngFor="let color of listColor; let i = index"
+                            class="form-check form-check-primary"
+                          >
+                            <label class="form-check-label">
+                              <input
+                                type="checkbox"
+                                [value]="color.colorName"
+                                [checked]="color.selected"
+                                [disabled]="color.selected === true"
+                                (change)="onCheckboxColor($event)"
+                                formArrayName="color"
+                                class="form-check-input"
+                              />
+                              {{ color.colorName }}
+                              <i class="input-helper"></i>
+                            </label>
+                          </div>
+                        </div>
+                        <div class="form-group col-lg-2">
+                          <label for="exampleTextarea1"> Size </label>
+                          <div
+                            *ngFor="let size of listSize; let i = index"
+                            class="form-check form-check-primary d-flex"
+                          >
+                            <label class="form-check-label">
+                              <input
+                                type="checkbox"
+                                [value]="size.sizeName"
+                                [checked]="size.selected"
+                                [disabled]="size.selected === true"
+                                (change)="onCheckboxSize($event)"
+                                formArrayName="size"
+                                class="form-check-input"
+                              />
+                              {{ size.sizeName }}
+                              <i class="input-helper"></i>
+                            </label>
+                          </div>
+                        </div>
+                        <div class="form-group col-lg-8">
+                          <label for="exampleTextarea1"> Stock </label>
+                          <table class="table-stock" style="color: #f1f1f1">
+                            <thead>
+                              <tr>
+                                <th>Color</th>
+                                <th>Size</th>
+                                <th>Quantity</th>
+                                <th>Delete</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let item of listColorSizeDto">
+                                <td>{{ item.colorName }}</td>
+                                <td>{{ item.sizeName }}</td>
+                                <td>
+                                  <input
+                                    [value]="item.quantity"
+                                    (input)="
+                                      item.quantity = $any($event.target).value
+                                    "
+                                    (change)="onChangeQuantity(item)"
+                                    class="quantity-color-size"
+                                    type="number"
+                                  />
+                                </td>
+                                <td class="delete-row-stock">
+                                  <i
+                                    (click)="deleteRowStock(item)"
+                                    class="fas fa-backspace"
+                                  ></i>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="upload-image">
+                    <div class="form-group col-lg-12">
+                      <label>
+                        Thumbnail
+                        <span
+                          class="messError"
+                          *ngIf="formAddProduct.get('thumbnail')?.touched && formAddProduct.get('thumbnail')?.errors?.['required']"
+                        >
+                          ( không được bỏ trống )</span
+                        >
+                      </label>
+                      <div class="input-group col-xs-12">
+                        <img class="show-image" [src]="imageFile" alt="" />
+                        <input
+                          type="file"
+                          (change)="onchangeThumbnail($event)"
+                          class="ps-4 form-control file-upload-info"
+                          placeholder="Upload Image"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="upload-image-slider">
+                    <div class="form-group col-lg-12">
+                      <label>
+                        Slider Image
+                        <!-- <span
+                          class="messError"
+                          *ngIf="formAddProduct.get('thumbnail')?.touched && formAddProduct.get('thumbnail')?.errors?.['required']"
+                        >
+                          ( không được bỏ trống )</span
+                        > -->
+                      </label>
+                      <div class="input-group slider-image col-xs-12">
+                        <div class="owl" style="width: 243px; margin: 0 auto">
+                          <owl-carousel-o
+                            [options]="customOptionsSliderImagelPrd"
+                          >
+                            <ng-template
+                              carouselSlide
+                              *ngFor="let image of listSliderImage"
+                            >
+                              <img
+                                class=""
+                                style="
+                                  width: 100%;
+                                  height: 80px;
+                                  object-fit: cover;
+                                  border: 2px solid #00d25b;
+                                "
+                                [src]="image"
+                                alt=""
+                              />
+                            </ng-template>
+                          </owl-carousel-o>
+                        </div>
+                        <input
+                          type="file"
+                          (change)="onchangeSliderImage($event)"
+                          class="ps-4 form-control file-upload-info mt-2"
+                          placeholder="Upload Image"
+                          multiple
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleSelectGender">
+                      Brand Product
+                      <span
+                        class="messError"
+                        *ngIf="formAddProduct.get('brand')?.touched && formAddProduct.get('brand')?.errors?.['required']"
+                      >
+                        ( không được bỏ trống )</span
+                      >
+                    </label>
+                    <select
+                      class="form-control"
+                      formControlName="brand"
+                      id="exampleSelectGender"
+                    >
+                      <option
+                        [attr.disabled]="true"
+                        [attr.hidden]="true"
+                        value=""
+                      >
+                        choose brand
+                      </option>
+                      <option value="11">Quần áo nam</option>
+                      <option value="12">Quần áo nữ</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="row px-3">
+                  <div class="form-check form-check-primary col-lg-4">
+                    <label class="form-check-label">
+                      <input
+                        type="radio"
+                        name="typeProduct"
+                        value="newProduct"
+                        formControlName="typeProduct"
+                        [(ngModel)]="typeProduct"
+                        class="form-check-input" />
+                      New Product
+                      <i class="input-helper"></i
+                    ></label>
+                  </div>
+                  <div class="form-check form-check-primary col-lg-4">
+                    <label class="form-check-label">
+                      <input
+                        type="radio"
+                        name="typeProduct"
+                        value="trendProduct"
+                        formControlName="typeProduct"
+                        class="form-check-input" />
+                      Trend Product <i class="input-helper"></i
+                    ></label>
+                  </div>
+                  <div class="form-check form-check-primary col-lg-4">
+                    <label class="form-check-label">
+                      <input
+                        type="radio"
+                        name="typeProduct"
+                        value="featureProduct"
+                        formControlName="typeProduct"
+                        class="form-check-input" />
+                      Feature Product <i class="input-helper"></i
+                    ></label>
+                  </div>
+                </div>
+              </div>
+              <ng-container *ngIf="checkAction !== 2">
+                <button type="submit" class="btn btn-primary mr-2">Save</button>
+                <button class="btn btn-dark">Cancel</button>
+              </ng-container>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- content-wrapper ends -->
+  <!-- partial:../../partials/_footer.html -->
+  <footer class="footer">
+    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+      <span
+        class="text-muted d-block text-center text-sm-left d-sm-inline-block"
+        >Copyright © bootstrapdash.com 2020</span
+      >
+      <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">
+        Free
+        <a
+          href="https://www.bootstrapdash.com/bootstrap-admin-template/"
+          target="_blank"
+          >Bootstrap admin templates</a
+        >
+        from Bootstrapdash.com</span
+      >
+    </div>
+  </footer>
+  <!-- partial -->
+</div>
+
+<div class="loadding" [ngClass]="checkLoadding ? 'showok' : ''">
+  <div class="spinner-border text-success" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
+
+<!-- <div fxLayout ="column"[formGroup]="loginForm" style="background-color:palevioletred;padding :20px; border:2px solid black" fxFill fxLayoutGap="20px">
+  <h1 fxFlexAlign="center"> Login Page </h1>
+  <input type ="" formControlName = 'email' placeholder="email">
+  <div *ngIf="loginForm.get('email').errors">
+
+    <span *ngIf ="loginForm.get('email').errors['minlength']">Minimum length is 5</span>
+
+    <span *ngIf ="loginForm.get('email').touched && !loginForm.get('email').valid">This field is required</span>
+   </div>
+
+    <input type ="" formControlName = 'password' placeholder="password">
+
+   <div fxLayout ="column" fxLayoutGap="20px" formGroupName= "address">
+  <h2 fxFlexAlign= "center">Address</h2>
+  <input type="" formControlName = 'door' placeholder="door num">
+   <input type="" formControlName = 'street' placeholder="street">
+    <input type="" formControlName = 'city' placeholder="city">
+    <select name="state">
+      <option>state</option>
+      <option value=""></option>
+      <option value=""></option>
+      <option value=""></option>
+      <option value=""></option>
+    </select>
+
+  </div>
+
+
+  <button (click)="submit()" style="background-color:skyblue;">Login</button>
+</div> -->

@@ -1,0 +1,273 @@
+<!-- Breadcrumb Begin -->
+<div class="breadcrumb-option">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="breadcrumb__links">
+          <a href="index.html">
+            <i class="fas fa-home"></i>
+            Home
+          </a>
+          <span
+            class="px-1"
+            *ngFor="let cate of listBreadcrumbLink; let i = index"
+          >
+            <ng-container *ngIf="i == 0; else disiableBread">
+              <i class="fal fa-angle-right"></i>
+              <a routerLink="/product-list/{{ cate.slug }}">
+                <span class="active_breadcrumbLink">
+                  {{ cate.breadcrumbLink }}
+                </span>
+              </a>
+            </ng-container>
+            <ng-template #disiableBread>
+              <i class="fal fa-angle-right"></i>
+              <a
+                routerLink="/product-list/{{
+                  listBreadcrumbLink[i - 1].slug
+                }}/{{ cate.slug }}"
+              >
+                <span class="active_breadcrumbLink">
+                  {{ cate.breadcrumbLink }}
+                </span>
+              </a>
+            </ng-template>
+          </span>
+          <span class="px-1">
+            <i class="fal fa-angle-right"></i>
+            <span>{{ product.productName }}</span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Breadcrumb End -->
+<!-- Product Details Section Begin -->
+<section class="product-details spad">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="product__details__pic">
+          <div class="product__details__pic__left product__thumb nice-scroll">
+            <a class="pt active" href="#product-1">
+              <img
+                src="../../../../../assets/img/product/details/thumb-1.jpg"
+                alt=""
+              />
+            </a>
+            <a class="pt" href="#product-2">
+              <img
+                src="../../../../../assets/img/product/details/thumb-2.jpg"
+                alt=""
+              />
+            </a>
+            <a class="pt" href="#product-3">
+              <img
+                src="../../../../../assets/img/product/details/thumb-3.jpg"
+                alt=""
+              />
+            </a>
+            <a class="pt" href="#product-4">
+              <img
+                src="../../../../../assets/img/product/details/thumb-4.jpg"
+                alt=""
+              />
+            </a>
+          </div>
+          <div class="product__details__slider__content">
+            <div class="product__details__pic__slider">
+              <owl-carousel-o [options]="customOptionsSliderDetailPrd">
+                <ng-template carouselSlide>
+                  <img
+                    data-hash="product-1"
+                    class="product__big__img"
+                    [src]="product?.thumbnail"
+                    alt=""
+                  />
+                </ng-template>
+              </owl-carousel-o>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="product__details__text">
+          <h3>
+            {{ product.productName }}
+            <span>Brand: {{ product.brand }}</span>
+          </h3>
+          <div class="rating">
+            <ng-container *ngFor="let item of listVote">
+              <i class="fas fa-star"></i>
+            </ng-container>
+            <span>( 138 reviews )</span>
+          </div>
+          <div class="product__details__price">
+            ${{
+              (product.price * (100 - product.discount)) / 100 | number: "1.0-0"
+            }}
+            <span>$ {{ product.price }}</span>
+          </div>
+          <p>
+            {{ product.descriptionShort }}
+          </p>
+          <div class="product__details__button">
+            <div class="quantity">
+              <span>Quantity:</span>
+              <div class="pro-qty">
+                <span class="dec qtybtn" (click)="handleChangeQuanlity(-1)"
+                  >-</span
+                >
+                <input
+                  [value]="quanlity"
+                  [(ngModel)]="quanlity"
+                  type="text"
+                  min="1"
+                />
+                <span class="inc qtybtn" (click)="handleChangeQuanlity(1)"
+                  >+</span
+                >
+              </div>
+            </div>
+            <a (click)="addPrdToCart(product)" class="cart-btn"
+              ><span class="fal fa-shopping-bag"></span> Add to cart</a
+            >
+            <ul>
+              <li>
+                <a href="#"><span class="fal fa-heart"></span></a>
+              </li>
+              <li>
+                <a href="#"><span class="fal fa-sliders-h"></span></a>
+              </li>
+            </ul>
+          </div>
+          <div class="product__details__widget">
+            <ul>
+              <li>
+                <span>Availability:</span>
+                <div class="stock__checkbox">
+                  <label for="stockin">
+                    In Stock
+                    <input type="checkbox" id="stockin" />
+                    <span class="checkmark"></span>
+                  </label>
+                </div>
+              </li>
+              <li>
+                <span>Available color:</span>
+                <div class="color__checkbox">
+                  <label *ngFor="let color of listColor">
+                    <label>
+                      <input
+                        type="radio"
+                        [checked]="color?.colorId === colorId"
+                        [value]="color?.code"
+                        name="color__radio"
+                        (click)="sendValueColor(color)"
+                      />
+                      <span
+                        class="checkmark"
+                        [style.background]="color.code"
+                      ></span>
+                    </label>
+                  </label>
+                </div>
+              </li>
+              <li>
+                <span>Available size:</span>
+                <div class="size__btn">
+                  <ng-container *ngFor="let size of listSize">
+                    <label [ngClass]="{ active: size.sizeId == sizeId }">
+                      <input
+                        type="radio"
+                        [value]="size?.sizeName"
+                        name="radio__size"
+                        (click)="sendValueSize(size)"
+                      />
+                      {{ size?.sizeName }}
+                    </label>
+                  </ng-container>
+                </div>
+              </li>
+              <li>
+                <span>Promotions:</span>
+                <p>Free shipping</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-12">
+        <div class="product__details__tab">
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                data-toggle="tab"
+                href="#tabs-1"
+                role="tab"
+                >Description</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab"
+                >Specification</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab"
+                >Reviews ( 2 )</a
+              >
+            </li>
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane active" id="tabs-1" role="tabpanel">
+              <h6>Description</h6>
+              <p>{{ product.descriptionDetail }}</p>
+            </div>
+            <div class="tab-pane" id="tabs-2" role="tabpanel">
+              <h6>Specification</h6>
+              <p>2</p>
+            </div>
+            <div class="tab-pane" id="tabs-3" role="tabpanel">
+              <h6>Reviews ( 2 )</h6>
+              <p>3</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <div class="related__title">
+          <h5>RELATED PRODUCTS</h5>
+        </div>
+      </div>
+      <owl-carousel-o [options]="customOptionsPrdRelation">
+        <ng-template carouselSlide *ngFor="let prd of listProductRelation">
+          <app-product-item
+            [product]="prd"
+            [slugCategory]="slugCategory"
+          ></app-product-item>
+        </ng-template>
+      </owl-carousel-o>
+    </div>
+  </div>
+</section>
+<!-- Product Details Section End -->
+<!-- Instagram Begin -->
+<div class="instagram">
+  <div class="container-fluid">
+    <div class="row">
+      <div
+        *ngFor="let insta of listInstagram"
+        class="col-lg-2 col-md-4 col-sm-4 p-0"
+      >
+        <app-insta-item [urlImg]="insta.urlImg"></app-insta-item>
+      </div>
+    </div>
+  </div>
+</div>
+<app-scroll-top></app-scroll-top>
+<!-- Instagram End -->

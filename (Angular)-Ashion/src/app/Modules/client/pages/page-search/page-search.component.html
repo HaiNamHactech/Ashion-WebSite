@@ -1,0 +1,52 @@
+<!-- Breadcrumb Begin -->
+<div class="breadcrumb-option">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="breadcrumb__links">
+          <a href="index.html">
+            <i class="fas fa-home"></i>
+            Home
+          </a>
+          <i class="fal fa-angle-right"></i>
+          <span>Search: {{ listSearch.length }} results</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Breadcrumb End -->
+<!-- Shop Section Begin -->
+<section class="shop spad">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 col-md-12">
+        <h2 class="content-title-main">
+          Your search for revealed the <br />
+          following:
+        </h2>
+        <div class="row">
+          <div class="col-lg-3 col-md-4" *ngFor="let prd of listSearch">
+            <app-product-item [product]="prd" [slugCategory]="''">
+            </app-product-item>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Shop Section End -->
+<!-- Instagram Begin -->
+<div class="instagram">
+  <div class="container-fluid">
+    <div class="row">
+      <div
+        *ngFor="let insta of listInstagram"
+        class="col-lg-2 col-md-4 col-sm-4 p-0"
+      >
+        <app-insta-item [urlImg]="insta.urlImg"></app-insta-item>
+      </div>
+    </div>
+  </div>
+</div>
+<app-scroll-top></app-scroll-top>

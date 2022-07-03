@@ -1,0 +1,123 @@
+@import "~bootstrap/dist/css/bootstrap.min.css";
+@import url("../node_modules/ngx-toastr/toastr.css");
+@import url("../node_modules/wowjs/css/libs/animate.css");
+@media only screen and (min-width: 1200px) {
+  .container {
+    max-width: 1170px;
+  }
+}
+ul {
+  padding-left: 0;
+  margin-bottom: 0px;
+}
+.owl-dot {
+  width: 12px;
+  height: 12px;
+  background-color: #d1cbcb;
+  border-radius: 50%;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.owl-dot.active {
+  background-color: #ca1515;
+}
+.owl-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 135px;
+}
+.product__item__text .rating i,
+.trend__item__text .rating i {
+  font-size: 9px;
+  color: #e3c01c;
+  margin: 0;
+}
+.product__details__pic__slider .owl-nav {
+  position: absolute;
+  top: 50%;
+  display: flex;
+  align-items: center;
+}
+.nav-slide-prev {
+  position: absolute;
+  left: 360px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.nav-slide-next {
+  position: absolute;
+  left: 13px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.ng5-slider.animate .ng5-slider-bubble.ng5-slider-limit,
+.ng5-slider-span.ng5-slider-bubble.ng5-slider-model-value,
+.ng5-slider-span.ng5-slider-bubble.ng5-slider-model-high,
+.ng5-slider-span {
+  display: none;
+}
+.ng5-slider.animate .ng5-slider-selection {
+  background: #ca1515;
+  height: 5.5px;
+}
+.ng5-slider .ng5-slider-pointer:after {
+  width: 0px !important;
+  height: 0px !important;
+}
+.ng5-slider .ng5-slider-pointer {
+  background: transparent !important;
+  outline: none !important;
+  background: #ca1515 !important;
+  width: 14px !important;
+  height: 14px !important;
+  top: -5px !important;
+}
+
+a {
+  text-decoration: none;
+}
+::-webkit-scrollbar {
+  width: 2px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #ebebeb;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  background: #6d6d6d;
+}
+html,
+body {
+  height: 100%;
+  font-family: "Montserrat", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.owl-theme .owl-dots .owl-dot span {
+  display: none;
+}
+.owl-theme .owl-nav.disabled + .owl-dots {
+  margin-top: 125px;
+}
+.modal-backdrop {
+  position: unset !important;
+}
+.modal-backdrop.fade.show {
+  display: none !important;
+}

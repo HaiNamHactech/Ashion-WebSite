@@ -1,0 +1,25 @@
+@import url('../../../../../assets/css/style.css');
+.scrollTop {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  text-align: center;
+  background-color: transparent;
+  border: 2px solid #ca1515;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  z-index: 150;
+}
+.scrollTop i {
+  color: #ca1515;
+  font-size: 30px;
+  font-weight: lighter;
+  padding: 3px 10px;
+}
+.scrollTop:hover {
+  background-color: #ca1515;
+}
+.scrollTop:hover i {
+  color: #fff;
+}

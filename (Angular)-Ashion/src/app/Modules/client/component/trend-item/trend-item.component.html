@@ -1,0 +1,14 @@
+<div class="trend__item">
+  <div class="trend__item__pic">
+    <img class="img-prd" [src]="product.thumbnail" (click)="navigateToDetail(product)" />
+  </div>
+  <div class="trend__item__text">
+    <h6 class="prd-name" (click)="navigateToDetail(product)">{{ product.productName }}</h6>
+    <ng-container *ngFor="let item of listVote">
+      <i class="fas fa-star"></i>
+    </ng-container>
+    <div class="product__price">
+      $ {{ (product.price * (100 - product.discount)) / 100 | number: "1.0-0" }}
+    </div>
+  </div>
+</div>

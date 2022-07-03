@@ -1,0 +1,20 @@
+<app-table
+  [ListItem]="listCategoryPagination"
+  [ListKey]="listKey"
+  [filedColumn]="filedTable"
+  [showAction]="showAction"
+  [id]="keyId"
+  [titleTable]="titleTable"
+  [checkLoadding]="checkLoadding"
+  (handleDeleteItem)="handleDeleteItem($event)"
+  (handleEditItem)="handleEditItem($event)"
+  (handleDetailItem)="handleDetailItem($event)"
+  (handleNavigate)="handleNavigate()"
+  [firstPage]="firstPage"
+  [lastPage]="lastPage"
+  [page]="offset"
+  [totalPage]="totalPage"
+  [pageSize]="pageSize"
+  (curentPage)="handleSelectPage($event)"
+>
+</app-table>

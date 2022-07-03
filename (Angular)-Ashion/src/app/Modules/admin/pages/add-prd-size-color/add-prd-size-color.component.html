@@ -1,0 +1,150 @@
+<div class="main-panel">
+  <div class="content-wrapper">
+    <div class="page-header">
+      <h3 class="page-title">Form elements</h3>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">Forms</a></li>
+          <li class="breadcrumb-item active" aria-current="page">
+            Form elements
+          </li>
+        </ol>
+      </nav>
+    </div>
+    <div class="row">
+      <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-lg-3">
+                <h4 class="card-title">Add Size Color Product</h4>
+              </div>
+              <div class="col-lg-9 px-0">
+                <div class="input-search d-flex">
+                  <input
+                    _ngcontent-sba-c23=""
+                    type="text"
+                    placeholder="Search products"
+                    class="form-control"
+                  />
+                  <button
+                    _ngcontent-qpf-c32=""
+                    type="submit"
+                    class="btn btn-primary mr-2"
+                  >
+                    Search
+                  </button>
+                </div>
+              </div>
+            </div>
+            <form
+              class="forms-sample"
+              [formGroup]="formAddPrdSizeColor"
+              (ngSubmit)="submitForm(formAddPrdSizeColor)"
+            >
+              <div class="row px-3">
+                <div class="col-lg-3 px-0">
+                  <p class="title">SIZE</p>
+                  <div
+                    *ngFor="let size of listSize; let i = index"
+                    class="form-check form-check-primary"
+                  >
+                    <label class="form-check-label">
+                      <input
+                        type="checkbox"
+                        [value]="size.sizeId"
+                        formArrayName="size"
+                        (change)="onCheckboxChange($event)"
+                        class="form-check-input" />{{ size.sizeName }}
+                      <i class="input-helper"></i
+                    ></label>
+                  </div>
+                </div>
+                <div class="col-lg-3 px-0">
+                  <p class="title">COLOR</p>
+                  <div
+                    *ngFor="let color of listColor; let i = index"
+                    class="form-check form-check-primary"
+                  >
+                    <label class="form-check-label">
+                      <input
+                        type="checkbox"
+                        [value]="color.colorId"
+                        formArrayName="color"
+                        (change)="onCheckboxChangeColor($event)"
+                        class="form-check-input" />
+                      {{ color.colorName }}
+                      <i class="input-helper"></i
+                    ></label>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label for="exampleSelectGender">Product Name</label>
+                    <select
+                      class="form-control"
+                      formControlName="product"
+                      id="exampleSelectGender"
+                    >
+                      <option
+                        [attr.disabled]="true"
+                        [attr.hidden]="true"
+                        value=""
+                      >
+                        choose product
+                      </option>
+                      <option
+                        *ngFor="let prd of listPrd"
+                        [value]="prd.productId"
+                      >
+                        {{ prd.productName }}
+                      </option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputName1">Quantity </label>
+                    <input
+                      type="number"
+                      formControlName="quantity"
+                      class="form-control"
+                      id="exampleInputName1"
+                      placeholder="quantity"
+                    />
+                  </div>
+                </div>
+              </div>
+              <button
+                type="submit"
+                class="btn btn-primary mr-2"
+                [disabled]="formAddPrdSizeColor.invalid"
+              >
+                Save
+              </button>
+              <button class="btn btn-dark">Cancel</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- content-wrapper ends -->
+  <!-- partial:../../partials/_footer.html -->
+  <footer class="footer">
+    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+      <span
+        class="text-muted d-block text-center text-sm-left d-sm-inline-block"
+        >Copyright © bootstrapdash.com 2020</span
+      >
+      <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">
+        Free
+        <a
+          href="https://www.bootstrapdash.com/bootstrap-admin-template/"
+          target="_blank"
+          >Bootstrap admin templates</a
+        >
+        from Bootstrapdash.com</span
+      >
+    </div>
+  </footer>
+  <!-- partial -->
+</div>

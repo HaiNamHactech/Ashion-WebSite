@@ -1,0 +1,94 @@
+<div class="main-panel">
+  <div class="content-wrapper">
+    <div class="page-header">
+      <h3 class="page-title">Form elements</h3>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">Forms</a></li>
+          <li class="breadcrumb-item active" aria-current="page">
+            Form elements
+          </li>
+        </ol>
+      </nav>
+    </div>
+    <div class="row">
+      <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <div *ngIf="checkAction === 0">
+              <h4 class="card-title">Add Role</h4>
+            </div>
+            <div *ngIf="checkAction === 1">
+              <h4 class="card-title">Edit Role</h4>
+            </div>
+            <div *ngIf="checkAction === 2">
+              <h4 class="card-title">Detail Role</h4>
+            </div>
+            <form
+              class="forms-sample"
+              [formGroup]="formAddRole"
+              (ngSubmit)="submitForm(formAddRole)"
+            >
+              <div class="row">
+                <div class="form-group col-lg-12">
+                  <label for="exampleInputName1">
+                    Role Name
+                    <span
+                      class="messError"
+                      *ngIf="formAddRole.get('name')?.touched && formAddRole.get('name')?.errors?.['required']"
+                    >
+                      ( không được bỏ trống )</span
+                    >
+                    <span
+                      class="messError"
+                      *ngIf="formAddRole.get('name')?.errors?.['RoleNameFiledDuplicated']"
+                    >
+                      ( role name đã tồn tại)
+                    </span>
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="name"
+                    class="form-control"
+                    id="exampleInputName1"
+                    placeholder="Role Name"
+                  />
+                </div>
+              </div>
+              <ng-container *ngIf="checkAction !== 2">
+                <button
+                  type="submit"
+                  class="btn btn-primary mr-2"
+                  [disabled]="formAddRole.invalid"
+                >
+                  Save
+                </button>
+                <button class="btn btn-dark">Cancel</button>
+              </ng-container>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- content-wrapper ends -->
+  <!-- partial:../../partials/_footer.html -->
+  <footer class="footer">
+    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+      <span
+        class="text-muted d-block text-center text-sm-left d-sm-inline-block"
+        >Copyright © bootstrapdash.com 2020</span
+      >
+      <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">
+        Free
+        <a
+          href="https://www.bootstrapdash.com/bootstrap-admin-template/"
+          target="_blank"
+          >Bootstrap admin templates</a
+        >
+        from Bootstrapdash.com</span
+      >
+    </div>
+  </footer>
+  <!-- partial -->
+</div>

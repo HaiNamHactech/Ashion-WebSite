@@ -1,0 +1,175 @@
+<div class="main-panel">
+  <div class="content-wrapper">
+    <div class="page-header">
+      <h3 class="page-title">Form elements</h3>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">Forms</a></li>
+          <li class="breadcrumb-item active" aria-current="page">
+            Form elements
+          </li>
+        </ol>
+      </nav>
+    </div>
+    <div class="row">
+      <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-lg-3">
+                <div *ngIf="checkAction === 0">
+                  <h4 class="card-title">Add Image Product</h4>
+                </div>
+                <div *ngIf="checkAction === 1">
+                  <h4 class="card-title">Edit Image Product</h4>
+                </div>
+                <div *ngIf="checkAction === 2">
+                  <h4 class="card-title">Detail Image Product</h4>
+                </div>
+              </div>
+              <div class="col-lg-9 px-0">
+                <div class="input-search d-flex">
+                  <input
+                    _ngcontent-sba-c23=""
+                    type="text"
+                    placeholder="Search products"
+                    class="form-control"
+                  />
+                  <button
+                    _ngcontent-qpf-c32=""
+                    type="submit"
+                    class="btn btn-primary mr-2"
+                  >
+                    Search
+                  </button>
+                </div>
+              </div>
+            </div>
+            <form
+              class="forms-sample"
+              [formGroup]="formAddImgPrd"
+              (ngSubmit)="submitForm(formAddImgPrd)"
+            >
+              <div class="row">
+                <div class="col-lg-8">
+                  <div class="upload-image">
+                    <div class="form-group col-lg-12">
+                      <label>
+                        Url Img
+                        <span
+                          class="messError"
+                          *ngIf="formAddImgPrd.get('thumbnail')?.touched && formAddImgPrd.get('thumbnail')?.errors?.['required']"
+                        >
+                          ( không được bỏ trống )</span
+                        >
+                      </label>
+                      <div class="input-group col-xs-12">
+                        <img
+                          *ngFor="let img of listImagePrd"
+                          class="show-image"
+                          [src]="img"
+                          alt="image"
+                        />
+                        <img
+                          *ngIf="listImagePrd.length === 0"
+                          class="show-image"
+                          src="../../../../../assets/img/upload.jpg"
+                          alt=""
+                        />
+                        <input
+                          type="file"
+                          (change)="onchangeImage($event)"
+                          class="ps-4 form-control file-upload-info"
+                          placeholder="Upload Image"
+                          multiple
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label for="exampleSelectGender">
+                      Product Name
+                      <span
+                        class="messError"
+                        *ngIf="formAddImgPrd.get('productId')?.touched && formAddImgPrd.get('productId')?.errors?.['required']"
+                      >
+                        ( không được bỏ trống )</span
+                      >
+                    </label>
+                    <select
+                      formControlName="productId"
+                      class="form-control"
+                      id="exampleSelectGender"
+                    >
+                      <option
+                        [attr.disabled]="true"
+                        [attr.hidden]="true"
+                        value=""
+                      >
+                        choose product
+                      </option>
+                      <ng-container *ngIf="checkAction !== 0; else normal">
+                        <option
+                          [attr.disabled]="true"
+                          [value]="prd.productId"
+                          *ngFor="let prd of listProduct"
+                        >
+                          {{ prd.productName }}
+                        </option>
+                      </ng-container>
+                      <ng-template #normal>
+                        <option
+                          [value]="prd.productId"
+                          *ngFor="let prd of listProduct"
+                        >
+                          {{ prd.productName }}
+                        </option>
+                      </ng-template>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <ng-container *ngIf="checkAction !== 2">
+                <button
+                  type="submit"
+                  class="btn btn-primary mr-2"
+                  [disabled]="formAddImgPrd.invalid"
+                >
+                  Save
+                </button>
+                <button class="btn btn-dark">Cancel</button>
+              </ng-container>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- content-wrapper ends -->
+  <!-- partial:../../partials/_footer.html -->
+  <footer class="footer">
+    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+      <span
+        class="text-muted d-block text-center text-sm-left d-sm-inline-block"
+        >Copyright © bootstrapdash.com 2020</span
+      >
+      <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">
+        Free
+        <a
+          href="https://www.bootstrapdash.com/bootstrap-admin-template/"
+          target="_blank"
+          >Bootstrap admin templates</a
+        >
+        from Bootstrapdash.com</span
+      >
+    </div>
+  </footer>
+  <!-- partial -->
+</div>
+<div class="loadding" [ngClass]="checkLoadding ? 'showok' : ''">
+  <div class="spinner-border text-success" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>

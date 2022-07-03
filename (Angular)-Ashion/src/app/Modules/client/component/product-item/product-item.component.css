@@ -1,0 +1,9 @@
+@import url("../../../../../assets/css/style.css");
+.product__item__text a:hover {
+  color: #ca1515 !important;
+  cursor: pointer !important;
+}
+.product__item__text a {
+  transition: all 0.5s ease;
+  font-weight: 500;
+}

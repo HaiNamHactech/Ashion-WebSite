@@ -1,0 +1,62 @@
+@import url("../../../../../assets/cssAdmin/style.css");
+label {
+  color: #ffffff;
+  font-weight: 500;
+}
+option {
+  color: #ffffff;
+}
+.main-panel {
+  height: 100%;
+}
+.title {
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 15px;
+  position: relative;
+  letter-spacing: 6px;
+}
+.title::after {
+  left: 0px;
+  content: "";
+  width: 80px;
+  height: 2px;
+  background-color: #0090e7;
+  position: absolute;
+  bottom: 0px;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+.show-prd {
+  width: 100%;
+  height: 30px;
+  background-color: red;
+}
+.avatar-comment {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+.avatar-comment img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+.status-comment {
+  color: red;
+}
+.form-group input ,
+.form-control{
+  color: black;
+}
+.input-avatar {
+  display: none;
+}

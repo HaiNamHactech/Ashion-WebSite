@@ -1,0 +1,16 @@
+<div class="blog__item">
+  <div
+    class="blog__item__pic"
+    [class]="customStyle ? 'large__item set-bg' : 'set-bg'"
+    style="background-image: url('{{ blog.urlImg }}');"
+  ></div>
+  <div class="blog__item__text">
+    <h6>
+      <a class="title-blog" (click)="navigateDetail(blog)">{{ blog.titleBlog}}</a>
+    </h6>
+    <ul>
+      <li>by Nam hai <span></span></li>
+      <li>{{ blog.createDate | date: "medium" }}</li>
+    </ul>
+  </div>
+</div>

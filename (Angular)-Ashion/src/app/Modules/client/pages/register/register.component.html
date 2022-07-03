@@ -1,0 +1,175 @@
+<!-- Breadcrumb Begin -->
+<div class="breadcrumb-option">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="breadcrumb__links">
+          <a href="index.html">
+            <i class="fas fa-home"></i>
+            Home
+          </a>
+          <i class="fal fa-angle-right"></i>
+          <span>Register</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Breadcrumb End -->
+
+<section class="register mb-5">
+  <div class="container">
+    <div class="row d-flex justify-content-center">
+      <div class="col-lg-4">
+        <div class="form-register">
+          <form
+            [formGroup]="formRegister"
+            (ngSubmit)="submitForm(formRegister)"
+          >
+            <input
+              type="hidden"
+              name="form_type"
+              value="create_customer"
+            /><input type="hidden" name="utf8" value="✓" />
+            <input type="hidden" name="return_to" value="/account" />
+            <div class="login-form-container">
+              <div class="title-text">
+                <h2>Create Account</h2>
+                <p>Please register below account detail</p>
+              </div>
+              <ul class="fill-form">
+                <li class="fname">
+                  <span
+                    class="messError"
+                    *ngIf="formRegister.get('firstName')?.touched && formRegister.get('firstName')?.errors?.['required']"
+                  >
+                    ( không được bỏ trống )</span
+                  >
+                  <span
+                    class="messError"
+                    *ngIf="formRegister.get('firstName')?.touched && formRegister.get('firstName')?.errors?.['pattern']"
+                  >
+                    ( 6-32 ký tự,không ký tự số,đặc biệt. )</span
+                  >
+
+                  <span
+                    class="messError"
+                    *ngIf="formRegister.get('firstName')?.errors?.['FiledDuplicated']"
+                  >
+                    (tên người dùng đã tồn tại)
+                  </span>
+                  <input
+                    type="text"
+                    formControlName="firstName"
+                    class="form-control input-full"
+                    placeholder="firstName"
+                  />
+                </li>
+                <li class="fname">
+                  <span
+                    class="messError"
+                    *ngIf="formRegister.get('lastName')?.touched && formRegister.get('lastName')?.errors?.['required']"
+                  >
+                    ( không được bỏ trống )</span
+                  >
+                  <span
+                    class="messError"
+                    *ngIf="formRegister.get('lastName')?.touched && formRegister.get('lastName')?.errors?.['pattern']"
+                  >
+                    ( 6-32 ký tự,không ký tự số,đặc biệt. )</span
+                  >
+                  <input
+                    type="text"
+                    formControlName="lastName"
+                    name="lastName"
+                    class="form-control input-full"
+                    placeholder="lastName"
+                  />
+                </li>
+                <li class="fname">
+                  <span
+                    class="messError"
+                    *ngIf="formRegister.get('email')?.touched && formRegister.get('email')?.errors?.['required']"
+                  >
+                    ( không được bỏ trống )</span
+                  >
+                  <span
+                    class="messError"
+                    *ngIf="formRegister.get('email')?.touched && formRegister.get('email')?.errors?.['pattern']"
+                  >
+                    ( nhập không đúng định dạng )</span
+                  >
+                  <span
+                    class="messError"
+                    *ngIf="formRegister.get('email')?.errors?.['FiledDuplicated']"
+                  >
+                    ( email đã tồn tại)
+                  </span>
+                  <input
+                    type="email"
+                    formControlName="email"
+                    class="form-control input-full"
+                    placeholder="email"
+                  />
+                </li>
+                <li class="fname">
+                  <span
+                    class="messError"
+                    *ngIf="formRegister.get('passWord')?.touched && formRegister.get('passWord')?.errors?.['required']"
+                  >
+                    ( không được bỏ trống )</span
+                  >
+                  <span
+                    class="messError"
+                    *ngIf="formRegister.get('passWord')?.touched && formRegister.get('passWord')?.errors?.['pattern']"
+                  >
+                    ( 6-32 ký tự ,có ký tự số, ký tự đặc biệt )</span
+                  >
+                  <input
+                    type="password"
+                    formControlName="passWord"
+                    class="form-control input-full"
+                    placeholder="Password"
+                  />
+                </li>
+                <li class="form-toggle-btn">
+                  <button
+                    class="btn btn-create form-action-button"
+                    type="submit"
+                    [disabled]="formRegister.invalid"
+                  >
+                    Create
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-lg-4 d-flex">
+        <div class="acc-page">
+          <div class="side-form-wrap">
+            <div class="acc-title d-flex align-item-center">
+              <h6>Already an account holder?</h6>
+            </div>
+            <button class="account-optional-action">
+              <a routerLink="/login" id="customer_login_link">Log in</a>
+            </button>
+            <div class="term-privacy">
+              <p class="term-con mt-3">
+                <span><sup>*</sup></span>
+                <a href="" target="_blank">Terms &amp; Conditions.</a>
+              </p>
+              <p class="pri-pol">
+                <span
+                  >Your privacy and security are important to us. For more
+                  information on how we use your data read our</span
+                >
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

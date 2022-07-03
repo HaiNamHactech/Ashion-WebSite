@@ -1,0 +1,15 @@
+@import url("../../../../../assets/cssAdmin/style.css");
+label {
+  color: #ffffff;
+  font-weight: 500;
+}
+option {
+  color: #ffffff;
+}
+.main-panel {
+  height: 100%;
+}
+.messError {
+  font-size: 12px;
+  color: red;
+}

@@ -1,0 +1,198 @@
+<div class="main-panel">
+  <div class="content-wrapper">
+    <div class="page-header">
+      <h3 class="page-title">Form elements</h3>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">Forms</a></li>
+          <li class="breadcrumb-item active" aria-current="page">
+            Form elements
+          </li>
+        </ol>
+      </nav>
+    </div>
+    <div class="row">
+      <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <div>
+              <h4 class="card-title">Edit Order</h4>
+            </div>
+            <form
+              [formGroup]="formEditOrder"
+              (ngSubmit)="submitForm(formEditOrder)"
+              class="forms-sample"
+            >
+              <div class="row">
+                <div class="form-group col-lg-6">
+                  <label for="exampleInputName1">
+                    First Name
+                    <span
+                      class="messError"
+                      *ngIf="formEditOrder.get('firstName')?.touched && formEditOrder.get('firstName')?.errors?.['required']"
+                    >
+                      ( không được bỏ trống )</span
+                    >
+                    <span
+                      class="messError"
+                      *ngIf="formEditOrder.get('firstName')?.touched && formEditOrder.get('firstName')?.errors?.['pattern']"
+                    >
+                      ( 6-32 ký tự,không ký tự số,đặc biệt. )</span
+                    >
+                  </label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="exampleInputName1"
+                    formControlName="firstName"
+                    placeholder="First Name..."
+                  />
+                </div>
+                <div class="form-group col-lg-6">
+                  <label for="exampleInputName1">
+                    Last Name
+                    <span
+                      class="messError"
+                      *ngIf="formEditOrder.get('lastName')?.touched && formEditOrder.get('lastName')?.errors?.['required']"
+                    >
+                      ( không được bỏ trống )</span
+                    >
+                    <span
+                      class="messError"
+                      *ngIf="formEditOrder.get('lastName')?.touched && formEditOrder.get('lastName')?.errors?.['pattern']"
+                    >
+                      ( 6-32 ký tự,không ký tự số,đặc biệt. )</span
+                    >
+                  </label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="exampleInputName1"
+                    formControlName="lastName"
+                    placeholder="Last Name..."
+                  />
+                </div>
+                <div class="form-group col-lg-6">
+                  <label for="exampleSelectGender"> Status Order </label>
+                  <select
+                    class="form-control"
+                    id="exampleSelectGender"
+                    formControlName="status"
+                    style="color: #f1f1f1"
+                  >
+                    <option
+                      [attr.disabled]="true"
+                      [attr.hidden]="true"
+                      value=""
+                    >
+                      change Status
+                    </option>
+                    <option value="2">Pending</option>
+                    <option value="3">Approved</option>
+                    <option value="4">Rejected</option>
+                  </select>
+                </div>
+                <div class="form-group col-lg-6">
+                  <label for="exampleInputName1">
+                    Phone
+                    <span
+                      class="messError"
+                      *ngIf="formEditOrder.get('phone')?.touched && formEditOrder.get('phone')?.errors?.['required']"
+                    >
+                      ( không được bỏ trống )</span
+                    >
+                    <span
+                      class="messError"
+                      *ngIf="formEditOrder.get('phone')?.touched && formEditOrder.get('phone')?.errors?.['pattern']"
+                    >
+                      ( nhập không đúng định dạng )</span
+                    >
+                  </label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="exampleInputName1"
+                    formControlName="phone"
+                    placeholder="Phone Number... "
+                  />
+                </div>
+                <div class="form-group col-lg-6">
+                  <label for="exampleInputName1">
+                    Email
+                    <span
+                      class="messError"
+                      *ngIf="formEditOrder.get('email')?.touched && formEditOrder.get('email')?.errors?.['required']"
+                    >
+                      ( không được bỏ trống )</span
+                    >
+                    <span
+                      class="messError"
+                      *ngIf="formEditOrder.get('email')?.touched && formEditOrder.get('email')?.errors?.['pattern']"
+                    >
+                      ( nhập không đúng định dạng )</span
+                    >
+                  </label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="exampleInputName1"
+                    formControlName="email"
+                    placeholder="Email... "
+                  />
+                </div>
+                <div class="form-group col-lg-6">
+                  <label for="exampleInputName1">
+                    Address
+                    <span
+                      class="messError"
+                      *ngIf="formEditOrder.get('address')?.touched && formEditOrder.get('address')?.errors?.['required']"
+                    >
+                      ( không được bỏ trống )</span
+                    >
+                  </label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="exampleInputName1"
+                    formControlName="address"
+                    placeholder="Address... "
+                  />
+                </div>
+                <div class="form-group col-lg-12">
+                  <label for="exampleInputName1"> Note </label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="exampleInputName1"
+                    formControlName="note"
+                    placeholder="Note... "
+                  />
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary mr-2">Save</button>
+              <button class="btn btn-dark">Cancel</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+      <span
+        class="text-muted d-block text-center text-sm-left d-sm-inline-block"
+        >Copyright © bootstrapdash.com 2020</span
+      >
+      <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">
+        Free
+        <a
+          href="https://www.bootstrapdash.com/bootstrap-admin-template/"
+          target="_blank"
+          >Bootstrap admin templates</a
+        >
+        from Bootstrapdash.com</span
+      >
+    </div>
+  </footer>
+</div>

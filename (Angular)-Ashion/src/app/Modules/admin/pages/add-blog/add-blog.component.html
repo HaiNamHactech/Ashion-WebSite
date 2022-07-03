@@ -1,0 +1,169 @@
+<div class="main-panel">
+  <div class="content-wrapper">
+    <div class="page-header">
+      <h3 class="page-title">Form elements</h3>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">Forms</a></li>
+          <li class="breadcrumb-item active" aria-current="page">
+            Form elements
+          </li>
+        </ol>
+      </nav>
+    </div>
+    <div class="row">
+      <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <div *ngIf="checkAction === 0">
+              <h4 class="card-title">Add Blog</h4>
+            </div>
+            <div *ngIf="checkAction === 1">
+              <h4 class="card-title">Edit Blog</h4>
+            </div>
+            <div *ngIf="checkAction === 2">
+              <h4 class="card-title">Detail Blog</h4>
+            </div>
+            <form
+              class="forms-sample"
+              [formGroup]="formAddBlog"
+              (ngSubmit)="submitForm(formAddBlog)"
+            >
+              <div class="row">
+                <div class="col-lg-8">
+                  <div class="row">
+                    <div class="form-group col-lg-6">
+                      <label for="exampleInputName1">
+                        Title Blog
+                        <span
+                          class="messError"
+                          *ngIf="formAddBlog.get('titleBlog')?.touched && formAddBlog.get('titleBlog')?.errors?.['required']"
+                        >
+                          ( không được bỏ trống )</span
+                        >
+                      </label>
+                      <input
+                        type="text"
+                        formControlName="titleBlog"
+                        class="form-control"
+                        id="exampleInputName1"
+                        placeholder="Title"
+                      />
+                    </div>
+                    <div class="form-group col-lg-6">
+                      <label for="exampleSelectGender">
+                        Category Blog
+                        <span
+                          class="messError"
+                          *ngIf="formAddBlog.get('categoryId')?.touched && formAddBlog.get('categoryId')?.errors?.['required']"
+                        >
+                          ( không được bỏ trống )</span
+                        >
+                      </label>
+                      <select
+                        formControlName="categoryId"
+                        class="form-control"
+                        id="exampleSelectGender"
+                      >
+                        <option
+                          [attr.disabled]="true"
+                          [attr.hidden]="true"
+                          value=""
+                        >
+                          choose category
+                        </option>
+                        <option
+                          [value]="cate.categoryId"
+                          *ngFor="let cate of listCategoryBlog"
+                        >
+                          {{ cate.categoryName }}
+                        </option>
+                      </select>
+                    </div>
+                    <div class="form-group col-lg-12">
+                      <label for="exampleTextarea1">
+                        Content Blog
+                        <span
+                          class="messError"
+                          *ngIf="formAddBlog.get('content')?.touched && formAddBlog.get('content')?.errors?.['required']"
+                        >
+                          ( không được bỏ trống )</span
+                        >
+                      </label>
+                      <textarea
+                        class="form-control"
+                        formControlName="content"
+                        placeholder="content blog"
+                        id="exampleTextarea1"
+                        rows="7"
+                      ></textarea>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="upload-image">
+                    <div class="form-group col-lg-12">
+                      <label>
+                        Url Img
+                        <span
+                          class="messError"
+                          *ngIf="formAddBlog.get('urlImg')?.touched && formAddBlog.get('urlImg')?.errors?.['required']"
+                        >
+                          ( không được bỏ trống )</span
+                        >
+                      </label>
+                      <div class="input-group col-xs-12">
+                        <img class="show-image" [src]="imageFile" alt="" />
+                        <input
+                          type="file"
+                          (change)="onchangeImage($event)"
+                          class="ps-4 form-control file-upload-info"
+                          placeholder="Upload Image"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <ng-container *ngIf="checkAction !== 2">
+                <button
+                  type="submit"
+                  class="btn btn-primary mr-2"
+                  [disabled]="formAddBlog.invalid"
+                >
+                  Save
+                </button>
+                <button class="btn btn-dark">Cancel</button>
+              </ng-container>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- content-wrapper ends -->
+  <!-- partial:../../partials/_footer.html -->
+  <footer class="footer">
+    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+      <span
+        class="text-muted d-block text-center text-sm-left d-sm-inline-block"
+        >Copyright © bootstrapdash.com 2020</span
+      >
+      <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">
+        Free
+        <a
+          href="https://www.bootstrapdash.com/bootstrap-admin-template/"
+          target="_blank"
+          >Bootstrap admin templates</a
+        >
+        from Bootstrapdash.com</span
+      >
+    </div>
+  </footer>
+  <!-- partial -->
+</div>
+<div class="loadding" [ngClass]="checkLoadding ? 'showok' : ''">
+  <div class="spinner-border text-success" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
